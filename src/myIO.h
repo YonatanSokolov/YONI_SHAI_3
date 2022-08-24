@@ -1,3 +1,6 @@
+#ifndef __myIO
+#define __myIO
+
 /**
  * Prints given matrix.
  * @param   M pointer to matrix to be printed
@@ -19,3 +22,5 @@ MATRIX *readMatrixFromFile(string filename);
  * @return  void
  */
 void printVector(VECTOR v, int length);
+
+#endif //__myIO

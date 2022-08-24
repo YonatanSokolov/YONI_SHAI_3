@@ -1,3 +1,6 @@
+#ifndef __universial
+#define __universial
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -38,3 +41,5 @@ void exitIf(bool cond, string msg);
  * @return  void
  */
 void println(string line);
+
+#endif //__universial

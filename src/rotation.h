@@ -1,3 +1,6 @@
+#ifndef __rotation
+#define __rotation
+
 /**
  * ROTATION represents the Jacobi rotation matrix of the form:
  * https://wikimedia.org/api/rest_v1/media/math/render/svg/2bb748aa40e4567df12134656077867df44a02cd 
@@ -42,3 +45,5 @@ void leftRotate(MATRIX *M, ROTATION *P);
  * @return  void
  */
 void pivot(MATRIX *M, ROTATION *P);
+
+#endif //__rotation

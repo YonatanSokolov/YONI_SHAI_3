@@ -35,6 +35,9 @@ MATRIX *newMatrix(int rowCnt, int colCnt);
  */
 MATRIX *newMatrixFromArray(int rowCnt, int colCnt, double data[]);
 
+#ifndef __matrix
+#define __matrix
+
 /**
  * Frees memory of given matrix.
  * @param   M matrix to be cleared
@@ -72,3 +75,5 @@ void subMatrix(MATRIX *A, MATRIX *B);
  * @return  pointer to identity matrix
  */
 MATRIX *identityMatrix(int n);
+
+#endif //__matrix

@@ -1,3 +1,6 @@
+#ifndef __algorithms
+#define __algorithms
+
 /**
  * Calculates weighted adjacency matrix (W).
  * @param   data vectors whose W is calculated
@@ -30,3 +33,5 @@ void normalizedGraphLaplacian(MATRIX *W, VECTOR D);
  *          and matrix V, where its 'i'th column is an eigenvector of v[i]
  */
 MATRIX_WITH_VECTOR *eigenvaluesAndEigenvectors(MATRIX *S);
+
+#endif //__algorithms

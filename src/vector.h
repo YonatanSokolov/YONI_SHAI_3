@@ -1,3 +1,6 @@
+#ifndef __vector
+#define __vector
+
 #define VECTOR      double *
 
 /**
@@ -8,3 +11,5 @@
  * @return  calculated l2 norm of (u-v)
  */
 double normOfDifference(int length, VECTOR u, VECTOR v);
+
+#endif //__vector
