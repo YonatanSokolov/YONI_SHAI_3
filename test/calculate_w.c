@@ -2,7 +2,7 @@
 #include "../src/calculate_w.h"
 #include <stdio.h>
 
-void test()
+void main()
 {
     //test1
     VECTOR *V1 = alloc_vector(4);
@@ -45,6 +45,7 @@ void test()
     V2->length=4;
     double rslt = distance_L2(V1->data,V2->data,4);
     if (distance_L2(V1->data,V2->data,4) != (double)7.68984848745)
-    {printf("test3 failed and returned ", rslt,"instead of 7.68984848745");}
+    printf("BAD\n");
+    // {printf("test3 failed and returned ", rslt, "instead of 7.68984848745");}
 }
 
