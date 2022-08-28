@@ -48,7 +48,7 @@ void main()
     // printf("BAD\n");
     {printf("test3 failed and returned %lf instead of 7.68984848745\n", rslt);}
     //test_w_1
-    MATRIX *V;
+    MATRIX *V = alloc_matrix(2, 2);
     get_m(V,0,0) = 1.1;
     get_m(V,0,1) = 4.3553;
     get_m(V,1,0) = 2.2;
@@ -56,8 +56,12 @@ void main()
     V->num_cols =2;
     V->num_rows =2;
     MATRIX *W = create_W(V);
-    printf(W->data);
-    printf(W->num_cols);
-    printf(W->num_rows);
+    printf("%lf\n", get_m(W, 0, 0));
+    printf("%lf\n", get_m(W, 0, 1));
+    printf("%lf\n", get_m(W, 1, 0));
+    printf("%lf\n", get_m(W, 1, 1));
+
+    printf("%u\n", W->num_cols);
+    printf("%u\n", W->num_rows);
 }
 
