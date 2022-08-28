@@ -4,8 +4,8 @@ mkdir -p bin
 
 # gcc -ansi -Wall -Wextra -Werror -pedantic-errors -lm -c src/_.c -o bin/_.o
 
-gcc -ansi -Wextra -Werror -pedantic-errors -lm -c src/myIO.c -o bin/myIO.o
-gcc -ansi -Wextra -Werror -pedantic-errors -lm -c src/datastructures.c -o bin/datastructures.o
+gcc -ansi -Wall -Wextra -Werror -pedantic-errors -lm -c src/myIO.c -o bin/myIO.o
+gcc -ansi -Wall -Wextra -Werror -pedantic-errors -lm -c src/datastructures.c -o bin/datastructures.o
 
 gcc -lm -c test/$1.c -o bin/$1_test.o
 
