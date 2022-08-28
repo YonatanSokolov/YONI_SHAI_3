@@ -37,7 +37,7 @@ VECTOR *alloc_vector(unsigned length) {
 }
 
 void free_vector(VECTOR *vec) {
-    if (!vec) return NULL;
+    if (!vec) return;
     free(vec->data);
     free(vec);
 }

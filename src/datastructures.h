@@ -1,6 +1,8 @@
 #ifndef __datastructures__
 #define __datastructures__
 
+#define len(DS) DS->length
+
 typedef struct {
     unsigned num_rows, num_cols;
     double **data;
