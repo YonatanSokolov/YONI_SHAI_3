@@ -24,3 +24,20 @@ void free_matrix(MATRIX *matrix) {
     free(matrix->data);
     free(matrix);
 }
+
+VECTOR *alloc_vector(unsigned length) {
+    VECTOR *vec = (VECTOR *) malloc(sizeof(VECTOR));
+    double *data = (double *) malloc(length * sizeof(double));
+    if (!vec || !data) return NULL;
+
+    vec->data = data;
+    vec->length = length;
+
+    return vec;
+}
+
+void free_vector(VECTOR *vec) {
+    if (!vec) return NULL;
+    free(vec->data);
+    free(vec);
+}
