@@ -1,0 +1,29 @@
+design desicions:
+
+1. matrix objects should be IMMUTABLE
+
+2. we will use "malloc-free" 
+
+3.matrices use "double"
+
+4.Define and use data structures:
+VECTOR:
+        "data" - array of floats
+        "length" - unsigned int
+MATRIX:
+        "data" - array of COLUMN array
+        "num_rows" - unsigned int
+        "num_columns" - unsigned int
+JACOBI_MATRIX:
+        "i" unsined int
+        "j" unsined int
+        "c" unsined int
+        "s" unsined int
+DIAGONAL_MATRIX
+        alias of a vector :)
+        with typedef
+
+use typedef vector_t *vector (because shai said so, and will explain in near future)
+
+
+        
