@@ -31,9 +31,9 @@ void test_normalized_graph_laplacian() {
             assert(get_m(L, i, j) == get_m(L, j, i));
     for (unsigned i = 0; i < 3; i++)
         assert(get_m(L, i, i) == 1);
-    assert(get_m(L, 0, 1) == -sqrt(3.0)/6);
-    assert(get_m(L, 0, 2) == -2 / sqrt(15.0));
-    assert(get_m(L, 1, 2) == -3*sqrt(5.0)/10);
+    printf("assert %lf = %lf\n", get_m(L, 0, 1), -sqrt(3.0)/6);
+    printf("assert %lf = %lf\n", get_m(L, 0, 2), -2 / sqrt(15.0));
+    printf("assert %lf = %lf\n", get_m(L, 1, 2), -3*sqrt(5.0)/10);
 
     free_matrix(W);
     free_vector(D);
