@@ -1,6 +1,8 @@
 #!/bin/bash
 
 mkdir -p bin
+mkdir -p testexe
+
 
 # gcc -ansi -Wall -Wextra -Werror -pedantic-errors -lm -c src/_.c -o bin/_.o
 
