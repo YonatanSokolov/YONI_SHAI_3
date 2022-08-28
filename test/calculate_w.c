@@ -45,7 +45,7 @@ void main()
     V2->length=4;
     double rslt = distance_L2(V1->data,V2->data,4);
     if (distance_L2(V1->data,V2->data,4) != (double)7.68984848745)
-    printf("BAD\n");
-    // {printf("test3 failed and returned ", rslt, "instead of 7.68984848745");}
+    // printf("BAD\n");
+    {printf("test3 failed and returned %lf instead of 7.68984848745\n", rslt);}
 }
 
