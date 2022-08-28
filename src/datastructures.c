@@ -1,10 +1,10 @@
 #include "datastructures.h"
 #include <stdlib.h>
 
-MATRIX alloc_matrix(unsigned num_rows, unsigned num_cols) {
+MATRIX *alloc_matrix(unsigned num_rows, unsigned num_cols) {
     unsigned j;
 
-    MATRIX matrix = (MATRIX) malloc(sizeof(struct matrix_t));
+    MATRIX *matrix = (MATRIX *) malloc(sizeof(MATRIX));
     double **data = (double **) malloc(num_cols * sizeof(double *));
     double *underlying_data = (double *) malloc(num_rows * num_cols * sizeof(double));
     if (!matrix || !data || !underlying_data) return NULL;
@@ -18,7 +18,7 @@ MATRIX alloc_matrix(unsigned num_rows, unsigned num_cols) {
     return matrix;
 }
 
-void free_matrix(MATRIX matrix) {
+void free_matrix(MATRIX *matrix) {
     if (!matrix) return;
     free(matrix->data[0]);
     free(matrix->data);

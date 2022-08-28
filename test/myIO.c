@@ -3,7 +3,7 @@
 #include <stdio.h>
 
 void test_read_vectors_from_file() {
-    MATRIX vecs = read_vectors_from_file("test/myIO_samp1");
+    MATRIX *vecs = read_vectors_from_file("test/myIO_samp1");
     assert(vecs);
     assert(vecs->num_cols == 2);
     assert(vecs->num_rows == 3);
