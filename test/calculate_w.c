@@ -1,6 +1,7 @@
 #include "../src/datastructures.h"
 #include "../src/calculate_w.h"
 #include <stdio.h>
+#include <math.h>
 
 void main()
 {
@@ -52,7 +53,7 @@ void main()
     get_m(V,0,0) = 1.1;
     get_m(V,0,1) = 4.3553;
     get_m(V,1,0) = 2.2;
-    get_m(V,1,1) = 1000.0;
+    get_m(V,1,1) = 1.9;
     V->num_cols =2;
     V->num_rows =2;
     MATRIX *W = create_W(V);
@@ -63,5 +64,7 @@ void main()
 
     printf("%u\n", W->num_cols);
     printf("%u\n", W->num_rows);
+
+    printf("exp(-20) = %lf\n", exp(-20));
 }
 
