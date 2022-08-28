@@ -16,4 +16,9 @@ MATRIX alloc_matrix(unsigned num_rows, unsigned num_cols) {
     matrix->num_cols = num_cols;
 }
 
-void free_matrix(MATRIX matrix);
+void free_matrix(MATRIX matrix) {
+    if (!matrix) return;
+    free(matrix->data[0]);
+    free(matrix->data);
+    free(matrix);
+}
