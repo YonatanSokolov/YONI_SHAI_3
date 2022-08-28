@@ -19,4 +19,4 @@ void free_matrix(MATRIX matrix);
 
 #define get_m(matrix, i, j) matrix->data[j][i]
 
-#endif //__datastructures__
+#endif /*__datastructures__*/

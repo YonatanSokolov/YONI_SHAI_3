@@ -7,8 +7,8 @@
  * Reads vectors form file with given file name.
  * Each row is treated as a vector.
  * Returns a matrix, with a column for each vector.
- * Assumes correct formatting of file.
+ * Assumes correct formatting of file and of file_name.
  */
-const MATRIX read_vectors_from_file(const char *file_name);
+MATRIX read_vectors_from_file(const char *file_name);
 
-#endif //__myIO__
+#endif /*__myIO__*/

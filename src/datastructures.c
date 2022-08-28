@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 MATRIX alloc_matrix(unsigned num_rows, unsigned num_cols) {
-    int j;
+    unsigned j;
 
     MATRIX matrix = (MATRIX) malloc(sizeof(struct matrix_t));
     double **data = (double **) malloc(num_cols * sizeof(double *));
@@ -14,6 +14,8 @@ MATRIX alloc_matrix(unsigned num_rows, unsigned num_cols) {
     matrix->data = data;
     matrix->num_rows = num_rows;
     matrix->num_cols = num_cols;
+
+    return matrix;
 }
 
 void free_matrix(MATRIX matrix) {
