@@ -3,7 +3,6 @@
 mkdir -p bin
 mkdir -p testexe
 
-
 # gcc -ansi -Wall -Wextra -Werror -pedantic-errors -lm -c src/_.c -o bin/_.o
 
 gcc -ansi -Wall -Wextra -Werror -pedantic-errors -lm -c src/myIO.c -o bin/myIO.o
