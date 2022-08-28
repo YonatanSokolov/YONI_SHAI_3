@@ -7,7 +7,6 @@
 double distance_L2(double *v1, double *v2, unsigned int len);
 
 /**
- * Frees given matrix.
  * Creates the Weighted Adjacency Matrix and Calculates it, and returns it.
  */
 MATRIX *create_W(MATRIX *V);
