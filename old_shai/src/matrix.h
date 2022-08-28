@@ -1,3 +1,6 @@
+#ifndef __matrix
+#define __matrix
+
 typedef struct double_matrix_t {
     int rowCnt, colCnt;
     double *data;
@@ -35,8 +38,7 @@ MATRIX *newMatrix(int rowCnt, int colCnt);
  */
 MATRIX *newMatrixFromArray(int rowCnt, int colCnt, double data[]);
 
-#ifndef __matrix
-#define __matrix
+
 
 /**
  * Frees memory of given matrix.
