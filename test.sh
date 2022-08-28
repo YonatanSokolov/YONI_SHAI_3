@@ -12,8 +12,8 @@ gcc -ansi -Wextra -Werror -pedantic-errors -lm -c src/lnorm.c -o bin/lnorm.o
 gcc -lm -c test/$1.c -o bin/$1_test.o
 
 gcc bin/myIO.o bin/datastructures.o bin/lnorm.o \
-bin/$1_test.o -o $1_test -lm
+bin/$1_test.o -o testexe/$1_test -lm
 
-./$1_test
+./testexe/$1_test
 
 echo DONE
