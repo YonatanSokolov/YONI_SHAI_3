@@ -13,7 +13,7 @@ VECTOR:
 MATRIX:
         "data" - array of COLUMN array
         "num_rows" - unsigned int
-        "num_columns" - unsigned int
+        "num_cols" - unsigned int
 JACOBI_MATRIX:
         "i" unsined int
         "j" unsined int
