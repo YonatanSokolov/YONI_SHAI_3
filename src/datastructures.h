@@ -39,5 +39,9 @@ void free_vector(VECTOR *vec);
 
 #define v_at(vec, i)   vec->data[i]
 
+typedef struct {
+    MATRIX *matrix;
+    VECTOR *vector;
+} MAT_AND_VEC;
 
 #endif /*__datastructures__*/
