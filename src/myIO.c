@@ -25,7 +25,7 @@ MATRIX *read_vectors_from_file(const char *file_name) {
         unsigned i, j;
         for (j = 0; j < num_vecs; j++)
             for (i = 0; i < vec_dim; i++) {
-                fscanf(file, "%lf", &get_m(res, i, j));
+                fscanf(file, "%lf", &m_at(res, i, j));
                 getc(file);
             }
     }

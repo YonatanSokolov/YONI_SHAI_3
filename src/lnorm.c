@@ -9,10 +9,10 @@ DIAGONAL_MATRIX *diagonal_degree_matrix(const MATRIX *W) {
     if (!D) return NULL;
 
     for (i = 0; i < len(D); i++) 
-        get_v(D, i) = 0;
+        v_at(D, i) = 0;
     for (j = 0; j < len(D); j++) 
         for (i = 0; i < len(D); i++)
-            get_v(D, i) += get_m(W, i, j);
+            v_at(D, i) += m_at(W, i, j);
     
     return D;
 }
@@ -25,11 +25,11 @@ MATRIX *normalized_graph_laplacian(const MATRIX *W, const DIAGONAL_MATRIX *D) {
     if (!D_sqrt || !L) return NULL;
 
     for (i = 0; i < dim; i++)
-        get_v(D_sqrt, i) = sqrt(get_v(D, i));
+        v_at(D_sqrt, i) = sqrt(v_at(D, i));
     for (j = 0; j < dim; j++)
         for (i = 0; i < dim; i++)
-            get_m(L, i, j) = 
-                (i == j) - get_m(W, i, j) / get_v(D_sqrt, i) / get_v(D_sqrt, j);  
+            m_at(L, i, j) = 
+                (i == j) - m_at(W, i, j) / v_at(D_sqrt, i) / v_at(D_sqrt, j);  
     
     return L;
 }

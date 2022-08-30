@@ -23,11 +23,11 @@ MATRIX *create_W(MATRIX *V)
     for(int i=0; i<n; i++){
         for(int j=0;j<n;j++){
             if (i==j){
-                get_m(w,i,j) = 0;
+                m_at(w,i,j) = 0;
             }
             else{
                     // printf("exp res %lf\n", exp(-distance_L2(V->data[i],V->data[j],V->num_rows)/2));
-                    get_m(w,i,j) = exp(-distance_L2(V->data[i],V->data[j],V->num_rows)/2);
+                    m_at(w,i,j) = exp(-distance_L2(V->data[i],V->data[j],V->num_rows)/2);
             }
         }
     }

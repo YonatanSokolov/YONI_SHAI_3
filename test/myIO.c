@@ -7,7 +7,7 @@ void test_read_vectors_from_file() {
     assert(vecs);
     assert(vecs->num_cols == 2);
     assert(vecs->num_rows == 3);
-    assert(get_m(vecs, 2, 1) == 3.1);
+    assert(m_at(vecs, 2, 1) == 3.1);
     printf("test read_vectors_from_file DONE\n");
 }
 

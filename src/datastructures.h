@@ -18,7 +18,7 @@ MATRIX *alloc_matrix(unsigned num_rows, unsigned num_cols);
  */
 void free_matrix(MATRIX *matrix);
 
-#define get_m(matrix, i, j) matrix->data[j][i]
+#define m_at(matrix, i, j) matrix->data[j][i]
 
 typedef struct {
     double *data;
@@ -37,7 +37,7 @@ VECTOR *alloc_vector(unsigned length);
  */
 void free_vector(VECTOR *vec);
 
-#define get_v(vec, i)   vec->data[i]
+#define v_at(vec, i)   vec->data[i]
 
 
 #endif /*__datastructures__*/
