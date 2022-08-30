@@ -11,9 +11,9 @@ MATRIX *read_vectors_from_file(const char *file_name) {
     /* find vec_dim and num_vecs */
     {
         int c;
-        for(c = getc(file); c != '\n'; c = getc(file))
+        for (c = getc(file); c != '\n'; c = getc(file))
             if (c == ',') vec_dim++;
-        for(c = getc(file); c != EOF; c = getc(file))
+        for (c = getc(file); c != EOF; c = getc(file))
             if (c == '\n') num_vecs++;
         fseek(file, 0, SEEK_SET);
     }
@@ -21,6 +21,7 @@ MATRIX *read_vectors_from_file(const char *file_name) {
     res = alloc_matrix(vec_dim, num_vecs);
     if (!res) return NULL;
 
+    /* read data from file into memory */
     {
         unsigned i, j;
         for (j = 0; j < num_vecs; j++)
