@@ -77,8 +77,8 @@ static int sort_inplace(MAT_AND_VEC *U) {
     #undef at
 }
 
-MATRIX *reduced_vectors(MAT_AND_VEC U) {
-    unsigned length = U.vector->length, k = 0, i, j;
+MATRIX *reduced_vectors_heuristic(MAT_AND_VEC U) {
+    unsigned length = U.vector->length, k = 0, i;
     double max = -1;
     MATRIX *res;
 
@@ -91,11 +91,17 @@ MATRIX *reduced_vectors(MAT_AND_VEC U) {
             k = i;
         }
     }
+    return reduced_vectors(U.matrix, k);
+}
 
-    res = alloc_matrix(U.matrix->num_rows, ++k);
+MATRIX *reduced_vectors(MATRIX *U, unsigned k) {
+    unsigned i, j;
+    MATRIX *res;
+
+    res = alloc_matrix(U->num_rows, ++k);
     if (!res) return NULL;
-    for (j = 0; j < k; j ++) for (i = 0; i < U.matrix->num_rows; i++)
-        m_at(res, i, j) = m_at(U.matrix, i, j);
+    for (j = 0; j < k; j ++) for (i = 0; i < U->num_rows; i++)
+        m_at(res, i, j) = m_at(U, i, j);
     return res;
 }
 
