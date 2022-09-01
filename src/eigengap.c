@@ -12,9 +12,9 @@ typedef struct {
 /**
  * Quick-sort a key array.
  */
-static void sort_rec(KEY *arr, unsigned length) {
+static void sort_inplace_rec(KEY *arr, unsigned length) {
     #define cmp(i, j, f, c)   (arr[i].f c arr[j].f)
-    #define greater(i, j)   \
+    #define greater(i, j)       \
         (cmp(i, j, val, ==) * cmp(i, j, pos, <) + cmp(i, j, val, >))
     #define swap(i, j)  do {    \
         KEY temp = arr[i];      \
@@ -35,8 +35,8 @@ static void sort_rec(KEY *arr, unsigned length) {
         else start++;
     }
     swap(end, length);
-    if (end) sort_rec(arr, end);
-    if (length - end) sort_rec(arr + end + 1, length - end);
+    if (end) sort_inplace_rec(arr, end);
+    if (length - end) sort_inplace_rec(arr + end + 1, length - end);
 
     #undef cmp
     #undef greater
@@ -60,7 +60,7 @@ static int sort_inplace(MAT_AND_VEC *U) {
         temp.pos = i;
         vps[i] = temp;
     }
-    sort_rec(vps, length);
+    sort_inplace_rec(vps, length);
     for (i = 0; i < length; i++)
         new_data[i] = at(matrix, vps[i].pos);
     U->matrix->data = new_data;
