@@ -5,6 +5,8 @@
 #include <string.h>
 #include <math.h>
 
+#include <stdio.h>
+
 typedef struct {
     double val;
     unsigned pos;
@@ -15,8 +17,8 @@ typedef struct {
  */
 static void sort_inplace_rec(KEY *arr, unsigned length) {
     #define cmp(i, j, f, c)   (arr[i].f c arr[j].f)
-    #define greater(i, j)       \
-        (cmp(i, j, val, ==) * cmp(i, j, pos, <) + cmp(i, j, val, >))
+    #define less_than(i, j)       \
+        (cmp(i, j, val, ==) * cmp(i, j, pos, <) + cmp(i, j, val, <))
     #define swap(i, j)  do {    \
         KEY temp = arr[i];      \
         arr[i] = arr[j];        \
@@ -24,12 +26,12 @@ static void sort_inplace_rec(KEY *arr, unsigned length) {
         } while (0)   
 
     unsigned start = 0, end = --length;
-    if (end - start == 1 && greater(end, start)) {
+    if (end - start == 1 && less_than(end, start)) {
         swap(end, start);
         return;
     }
     else while (start < end) {
-        if (greater(length, start)) {
+        if (less_than(length, start)) {
             end--;
             swap(start, end);
         }
@@ -40,12 +42,13 @@ static void sort_inplace_rec(KEY *arr, unsigned length) {
     if (length - end) sort_inplace_rec(arr + end + 1, length - end);
 
     #undef cmp
-    #undef greater
+    #undef less_than
     #undef swap
 }
 
 /**
  * Sorts matrix and vector by vector's elements inplace.
+ * Messes up memory layout!!!
  */
 static int sort_inplace(MAT_AND_VEC *U) {
     #define at(t, i)   v_at(U->t, i)
@@ -64,23 +67,25 @@ static int sort_inplace(MAT_AND_VEC *U) {
     sort_inplace_rec(vps, length);
     for (i = 0; i < length; i++)
         new_data[i] = at(matrix, vps[i].pos);
+    free(U->matrix->data);
     U->matrix->data = new_data;
     for (i = 0; i < length; i++)
         at(vector, i) = vps[i].val;
+    free(vps);
     return 0;
 
     #undef at
 }
 
 MATRIX *reduced_vectors(MAT_AND_VEC U) {
-    unsigned length = U.vector->length, k, i, j;
+    unsigned length = U.vector->length, k = 0, i, j;
     double max = -1;
     MATRIX *res;
 
     if (sort_inplace(&U)) return NULL;
 
     for (i = 0; i < length / 2; i++) {
-        double delta = v_at(U.vector, i) - v_at(U.vector, i + 1);
+        double delta = v_at(U.vector, length - 1 - i) - v_at(U.vector, length - 2 - i);
         if (delta > max) {
             max = delta;
             k = i;

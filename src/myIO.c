@@ -34,3 +34,17 @@ MATRIX *read_vectors_from_file(const char *file_name) {
     fclose(file);
     return res;
 }
+
+void print_matrix(MATRIX *M) {
+    unsigned i, j;
+    for (i = 0; i < M->num_rows; i++)
+        for(j = 0; j < M->num_cols; j++)
+            printf("%.4f%c", m_at(M, i, j), j + 1 == M->num_cols ? '\n' : ',');
+}
+
+void print_matrix_and_vector(MAT_AND_VEC mav) {
+    unsigned i;
+    for (i = 0; i < mav.vector->length; i++)
+        printf("%.4f%c", v_at(mav.vector, i), i + 1 == mav.vector->length ? '\n' : ',');
+    print_matrix(mav.matrix);
+}

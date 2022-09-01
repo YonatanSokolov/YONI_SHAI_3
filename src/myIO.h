@@ -11,4 +11,8 @@
  */
 MATRIX *read_vectors_from_file(const char *file_name);
 
+void print_matrix(MATRIX *M);
+
+void print_matrix_and_vector(MAT_AND_VEC mav);
+
 #endif /*__myIO__*/
