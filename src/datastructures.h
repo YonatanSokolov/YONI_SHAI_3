@@ -44,4 +44,13 @@ typedef struct {
     VECTOR *vector;
 } MAT_AND_VEC;
 
+typedef MAT_AND_VEC eigenvalues_and_eigenvectors;
+
+typedef struct{
+    unsigned int i;
+    unsigned int j;
+    double c;
+    double s;
+} JACOBI_ROTATION_MATRIX;
+
 #endif /*__datastructures__*/

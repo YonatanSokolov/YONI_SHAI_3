@@ -13,16 +13,18 @@
 //
 //create an identical typedef of an object called eigenvalues_and_eigenvectors to shai's mat_and_vec.(ask dad)
 //
-eigenvalues_and_eigenvectors Jacobi_algo(MATRIX *A)
+
+eigenvalues_and_eigenvectors Jacobi_algo(MATRIX *A,double epsilon)
 {
     MATRIX copy;
-    memcpy(copy.data,A->data,//size?????????);
-    actual_Jacobi_algo(,epsilon = ,P = identity_matrix)
+    //memcpy(copy.data,A->data,//size?????????);
+    MATRIX *id = alloc_matrix(A->num_rows,A->num_cols);
+    actual_Jacobi_algo(A, id, epsilon)
     // maybe for step e we should make the "actual_Jacobi_algo" get and return the A' and also P,
     // so we can always compute on the fly, the multiplication P1*P2*P3....
 }
 //todo: ffigure out how to copy the matrix to a copy and work on it
-eigenvalues_and_eigenvectors actual_Jacobi_algo(MATRIX *A,MATRIX *P,double epsilon)
+eigenvalues_and_eigenvectors *actual_Jacobi_algo(MATRIX *A,MATRIX *P,double epsilon)
 {
     unsigned int i;
     MATRIX *ATAG = calculate_ATAG(A);
@@ -36,15 +38,15 @@ eigenvalues_and_eigenvectors actual_Jacobi_algo(MATRIX *A,MATRIX *P,double epsil
         }
         MATRIX *eigenvectors = multiply_P_and_M(P,new_P);
         eigenvalues_and_eigenvectors *rslt;
-        rslt->eigenvalues = eigenvalues;
-        rslt->eigenvectors = eigenvectors;
-        return (rslt)
+        rslt->vector = eigenvalues;
+        rslt->matrix = eigenvectors;
+        return (rslt);
     }
 
 
 }
 
-Jacobi_rotation_matrix compute_P(MATRIX *A){
+JACOBI_ROTATION_MATRIX compute_P(MATRIX *A){
     unsigned int i,j;
     double maximal_element = 0; //this assumes that the matrix isn't empty
     unsigned int maximal_row;
@@ -70,7 +72,7 @@ MATRIX tag(MATRIX *A)
     //transpose(P)*A*P
 }
 
-Jacobi_rotation_matrix transpose(Jacobi_rotation_matrix P)
+JACOBI_ROTATION_MATRIX transpose(JACOBI_ROTATION_MATRIX P)
 {
     //make this function.
 }
@@ -94,10 +96,10 @@ bool is_diagonal(MATRIX *A, MATRIX *B,double epsilon)
     if (off_A-off_B <= epsilon){return true;}
     return false;
 }
-MATRIX calculate_ATAG(MATRIX *A)
+MATRIX *calculate_ATAG(MATRIX *A)
 {
     MATRIX *ATAG = alloc_matrix(A->num_rows,A->num_cols);
-    Jacobi_rotation_matrix P;
+    JACOBI_ROTATION_MATRIX *P;
     P = compute_P(A);
     double c = P->c;
     double s = P->s; 
