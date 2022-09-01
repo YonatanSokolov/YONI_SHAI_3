@@ -9,4 +9,9 @@
  */
 MATRIX *reduced_vectors(MAT_AND_VEC U);
 
+/**
+ * Renormalizes given matrix's rows
+ */
+void renormalize_inplace(MATRIX *U);
+
 #endif /*__eigengap__*/

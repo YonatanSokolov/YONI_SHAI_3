@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <string.h>
+#include <math.h>
 
 typedef struct {
     double val;
@@ -91,4 +92,16 @@ MATRIX *reduced_vectors(MAT_AND_VEC U) {
     for (j = 0; j < k; j ++) for (i = 0; i < U.matrix->num_rows; i++)
         m_at(res, i, j) = m_at(U.matrix, i, j);
     return res;
+}
+
+void renormalize_inplace(MATRIX *U) {
+    unsigned i, j;
+    for (i = 0; i < U->num_rows; i++) {
+        double norma = 0;
+        for (j = 0; j < U->num_cols; j++)
+            norma += m_at(U, i, j) * m_at(U, i, j);
+        norma = sqrt(norma);
+        for (j = 0; j < U->num_cols; j++)
+            m_at(U, i, j) /= norma;
+    }
 }
