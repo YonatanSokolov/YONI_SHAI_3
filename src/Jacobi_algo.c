@@ -17,15 +17,29 @@ eigenvalues_and_eigenvectors Jacobi_algo(MATRIX *A)
 {
     MATRIX copy;
     memcpy(copy.data,A->data,//size?????????);
-    actual_Jacobi_algo()
+    actual_Jacobi_algo(,epsilon = ,P = identity_matrix)
     // maybe for step e we should make the "actual_Jacobi_algo" get and return the A' and also P,
     // so we can always compute on the fly, the multiplication P1*P2*P3....
 }
 //todo: ffigure out how to copy the matrix to a copy and work on it
-eigenvalues_and_eigenvectors actual_Jacobi_algo(MATRIX *A,double epsilon)
+eigenvalues_and_eigenvectors actual_Jacobi_algo(MATRIX *A,MATRIX *P,double epsilon)
 {
-    MATRIX ATAG = calculate_ATAG(A);
-    if (!is_diagonal(A, ATAG, epsilon)){return (actual_Jacobi_algo(ATAG,epsilon))}
+    unsigned int i;
+    MATRIX *ATAG = calculate_ATAG(A);
+    MATRIX new_P = compute_P(A);
+    if (!is_diagonal(A, ATAG, epsilon)){return (actual_Jacobi_algo(ATAG ,multiply_P_and_M(P,new_P),epsilon))}
+    else
+    {
+        VECTOR *eigenvalues = alloc_vector(ATAG->num_cols);
+        for (i=0;i<ATAG->num_rows;i++){
+            v_at(eigenvalues,i) = m_at(ATAG,i,i);
+        }
+        MATRIX *eigenvectors = multiply_P_and_M(P,new_P);
+        eigenvalues_and_eigenvectors *rslt;
+        rslt->eigenvalues = eigenvalues;
+        rslt->eigenvectors = eigenvectors;
+        return (rslt)
+    }
 
 
 }
