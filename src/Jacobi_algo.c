@@ -204,7 +204,7 @@ MATRIX calculate_ATAG(MATRIX A)
     m_at(ATAG,P.j,P.j) = s*s*m_at(A,P.i,P.i) + c*c*m_at(A,P.j,P.j)+2*s*c*m_at(A,P.i,P.j);
     m_at(ATAG,P.i,P.j) = 0;
     m_at(ATAG,P.j,P.i) = 0;
-    printf("calculation_finished");
+    printf("calculation_finished\n");
     return ATAG;
 }
 
