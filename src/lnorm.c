@@ -1,5 +1,4 @@
 #include "lnorm.h"
-#include <stddef.h>
 #include <math.h>
 
 DIAGONAL_MATRIX diagonal_degree_matrix(MATRIX W) {
