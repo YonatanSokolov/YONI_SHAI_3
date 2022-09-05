@@ -141,7 +141,7 @@ JACOBI_ROTATION_MATRIX compute_P(MATRIX A){
     rslt.s = s;
     rslt.i = maximal_row;
     rslt.j = maximal_col;
-    printf("the matrix A=[%f %f %f %f] created such P that: P.c = %f ,P.s = %f , theta = %d , t = %d\n",m_at(A,0,0),m_at(A,0,1),m_at(A,1,0),m_at(A,1,1),rslt.c,rslt.s,theta,t);
+    printf("the matrix A=[%f %f %f %f] created such P that: P.c = %f ,P.s = %f , theta = %f , t = %f\n",m_at(A,0,0),m_at(A,0,1),m_at(A,1,0),m_at(A,1,1),rslt.c,rslt.s,theta,t);
     return rslt;
 } 
 
