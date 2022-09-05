@@ -10,8 +10,8 @@ DIAGONAL_MATRIX diagonal_degree_matrix(MATRIX W) {
 
     for (i = 0; i < D.length; i++) 
         v_at(D, i) = 0;
-    for (j = 0; j < D.length; j++) 
-        for (i = 0; i < D.length; i++)
+    for (i = 0; i < D.length; i++)
+        for (j = 0; j < D.length; j++) 
             v_at(D, i) += m_at(W, i, j);
     
     return D;
@@ -26,8 +26,8 @@ MATRIX normalized_graph_laplacian(MATRIX W, DIAGONAL_MATRIX D) {
 
     for (i = 0; i < dim; i++)
         v_at(D_sqrt, i) = sqrt(v_at(D, i));
-    for (j = 0; j < dim; j++)
-        for (i = 0; i < dim; i++)
+    for (i = 0; i < dim; i++)
+        for (j = 0; j < dim; j++)
             m_at(L, i, j) = 
                 (i == j) - m_at(W, i, j) / v_at(D_sqrt, i) / v_at(D_sqrt, j);  
     

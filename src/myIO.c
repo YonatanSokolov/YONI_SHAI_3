@@ -18,14 +18,14 @@ MATRIX read_vectors_from_file(const char *file_name) {
         fseek(file, 0, SEEK_SET);
     }
 
-    res = alloc_matrix(vec_dim, num_vecs);
+    res = alloc_matrix(num_vecs, vec_dim);
     if (is_null(res)) return NULL_MATRIX;
 
     /* read data from file into memory */
     {
         unsigned i, j;
-        for (j = 0; j < num_vecs; j++)
-            for (i = 0; i < vec_dim; i++) {
+        for (i = 0; i < num_vecs; i++)
+            for (j = 0; j < vec_dim; j++) {
                 fscanf(file, "%lf", &m_at(res, i, j));
                 getc(file);
             }
@@ -37,9 +37,8 @@ MATRIX read_vectors_from_file(const char *file_name) {
 
 void print_matrix(MATRIX M) {
     unsigned i, j;
-    for (i = 0; i < M.num_rows; i++)
-        for(j = 0; j < M.num_cols; j++)
-            printf("%.4f%c", m_at(M, i, j), j + 1 == M.num_cols ? '\n' : ',');
+    for (i = 0; i < M.num_rows; i++) for(j = 0; j < M.num_cols; j++)
+        printf("%.4f%c", m_at(M, i, j), j + 1 == M.num_cols ? '\n' : ',');
 }
 
 void print_matrix_and_vector(MAT_AND_VEC mav) {
@@ -47,4 +46,10 @@ void print_matrix_and_vector(MAT_AND_VEC mav) {
     for (i = 0; i < mav.vector.length; i++)
         printf("%.4f%c", v_at(mav.vector, i), i + 1 == mav.vector.length ? '\n' : ',');
     print_matrix(mav.matrix);
+}
+
+void print_diagonal_matrix(DIAGONAL_MATRIX D) {
+    unsigned i, j;
+    for (i = 0; i < D.length; i++) for(j = 0; j < D.length; j++)
+        printf("%.4f%c", i == j ? v_at(D, i) : 0, j + 1 == D.length ? '\n' : ',');
 }
