@@ -7,16 +7,16 @@
  * Determine k via eigengap heuristic, and reduce input to k columns. 
  * Assumes input vector has an eigenvalue for each column of input matrix.
  */
-MATRIX *reduced_vectors_heuristic(MAT_AND_VEC U);
+unsigned k_and_sort_inplace(MAT_AND_VEC *U);
 
 /**
  * Reduce input to k columns. 
  */
-MATRIX *reduced_vectors(MATRIX *U, unsigned k);
+MATRIX reduced_vectors(MATRIX U, unsigned k);
 
 /**
  * Renormalizes given matrix's rows
  */
-void renormalize_inplace(MATRIX *U);
+void renormalize_inplace(MATRIX U);
 
 #endif /*__eigengap__*/
