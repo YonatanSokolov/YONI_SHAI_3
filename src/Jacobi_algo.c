@@ -131,8 +131,8 @@ JACOBI_ROTATION_MATRIX compute_P(MATRIX A){
     JACOBI_ROTATION_MATRIX rslt;
     rslt.c = c;
     rslt.s = s;
-    rslt.i = i;
-    rslt.j = j;
+    rslt.i = maximal_row;
+    rslt.j = maximal_col;
     return rslt;
 } 
 
