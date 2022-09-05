@@ -85,8 +85,11 @@ eigenvalues_and_eigenvectors actual_Jacobi_algo(MATRIX A,MATRIX P)
     // printf("succssfully created P\n");
     if (!converged(A, ATAG))
     {
+        printf("before free_mat\n");
         free_matrix(A);
+        printf("freeing success!, multipy tho?\n");
         multiply_M_and_P(P,new_P);
+        printf("multiply success!\n");
         return (actual_Jacobi_algo(ATAG ,P));
     }
     //if this works - change to a "While" loop
