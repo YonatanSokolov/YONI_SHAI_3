@@ -16,11 +16,11 @@ static MATRIX identity_matrix(unsigned n) {
 }
 
 static void find_largest_offdiagonal_and_sum_upper(
-        MATRIX S, 
-        unsigned *res_i, 
-        unsigned *res_j, 
-        double *res_sum
-    ) {
+            MATRIX S, 
+            unsigned *res_i, 
+            unsigned *res_j, 
+            double *res_sum
+        ) {
     unsigned i, j;
     double curr, max_square = -1;
     *res_sum = 0;
