@@ -1,28 +1,31 @@
 #ifndef __datastructures__
 #define __datastructures__
 
-#define len(DS) DS->length
+#define is_null(DS) !DS.data
+
+MATRIX NULL_MATRIX;
+VECTOR NULL_VECTOR;
 
 typedef struct {
     unsigned num_rows, num_cols;
-    double **data;
+    double *data;
 } MATRIX;
 
 /**
  * Allocates memory for matrix of specified size.
  */
-MATRIX *alloc_matrix(unsigned num_rows, unsigned num_cols);
+MATRIX alloc_matrix(unsigned num_rows, unsigned num_cols);
 
 /**
  * Frees given matrix.
  */
-void free_matrix(MATRIX *matrix);
+void free_matrix(MATRIX matrix);
 
-#define m_at(matrix, i, j) matrix->data[j][i]
+#define m_at(matrix, i, j) matrix.data[i*matrix.num_cols + j]
 
 typedef struct {
-    double *data;
     unsigned length;
+    double *data;
 } VECTOR;
 
 typedef VECTOR DIAGONAL_MATRIX;
@@ -30,18 +33,18 @@ typedef VECTOR DIAGONAL_MATRIX;
 /**
  * Allocates memory for vector of specified size.
  */
-VECTOR *alloc_vector(unsigned length);
+VECTOR alloc_vector(unsigned length);
 
 /**
  * Frees given vector.
  */
-void free_vector(VECTOR *vec);
+void free_vector(VECTOR vec);
 
-#define v_at(vec, i)   vec->data[i]
+#define v_at(vec, i)   vec.data[i]
 
 typedef struct {
-    MATRIX *matrix;
-    VECTOR *vector;
+    MATRIX matrix;
+    VECTOR vector;
 } MAT_AND_VEC;
 
 typedef MAT_AND_VEC eigenvalues_and_eigenvectors;
@@ -56,8 +59,5 @@ typedef struct{
 #endif /*__datastructures__*/
 
 /*
-#define is_null(DS) !DS.data
 
-MATRIX NULL_MATRIX;
-VECTOR NULL_VECTOR;
 */
