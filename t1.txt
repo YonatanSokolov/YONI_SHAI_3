@@ -1,0 +1,16 @@
+weightedAdjacencyMatrix I test complete
+weightedAdjacencyMatrix II test complete
+diagonalDegreeMatrix test complete
+normalizedGraphLaplacian test complete
+S = 
+1.0000,-0.6000,-0.3000
+-0.6000,1.0000,-0.2000
+-0.3000,-0.2000,1.0000
+v = 
+1.6099,0.2357,1.1545
+V = 
+0.7283,0.6565,-0.1964
+-0.6712,0.6256,-0.3976
+-0.1381,0.4214,0.8963
+eigenvaluesAndEigenvectors test complete
+DONE

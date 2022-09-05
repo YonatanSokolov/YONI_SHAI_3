@@ -51,6 +51,9 @@ typedef struct {
 MAT_AND_VEC NULL_MAT_AND_VEC;
 
 typedef MAT_AND_VEC eigenvalues_and_eigenvectors;
+typedef MAT_AND_VEC EIGENVS;
+
+#define NULL_EIGENVS NULL_MAT_AND_VEC
 
 typedef struct{
     unsigned int i;
@@ -58,6 +61,8 @@ typedef struct{
     double c;
     double s;
 } JACOBI_ROTATION_MATRIX;
+
+typedef JACOBI_ROTATION_MATRIX ROTATION;
 
 #endif /*__datastructures__*/
 
