@@ -1,9 +1,8 @@
 #include "shaijacobi.h"
-#include <stdlib.h>
 #include <math.h>
 
-#define maxIter     100
-#define epsilon     0.000005
+#define MAX_ITER    100
+#define EPSILON     0.000005
 #define square(a)   ((a)*(a))
 
 static MATRIX identity_matrix(unsigned n) {
@@ -39,63 +38,64 @@ static void find_largest_offdiagonal_and_sum_upper(
 }
 
 void left_rotate_inplace(MATRIX M, ROTATION P) {
-    unsigned k, i = P.i, j= P.j;
-    double a_i, a_j, c = P.c, s = P.s;
+    unsigned k;
+    double a_i, a_j;
 
     for (k = 0; k < M.num_rows; k++) {
-        a_i = m_at(M, k, i), a_j = m_at(M, k, j);
-        m_at(M, k, i) = c*a_i - s*a_j;
-        m_at(M, k, j) = c*a_j + s*a_i;
+        a_i = m_at(M, k, P.i), a_j = m_at(M, k, P.j);
+        m_at(M, k, P.i) = P.c*a_i - P.s*a_j;
+        m_at(M, k, P.j) = P.c*a_j + P.s*a_i;
     }
 }
 
 void pivot_inplace(MATRIX M, ROTATION P) {
-    unsigned k, i = P.i, j = P.j;
-    double a_i, a_j, a_ij, c = P.c, s = P.s;
+    unsigned k;
+    double a_i, a_j, a_ij;
 
     for (k = 0; k < M.num_rows; k++) {
-        if (k == i || k == j) continue;
-        a_i = m_at(M, k, i), a_j = m_at(M, k, j);
-        m_at(M, k, i) = m_at(M, i, k) = c*a_i - s*a_j;
-        m_at(M, k, j) = m_at(M, j, k) = c*a_j + s*a_i;
+        if (k == P.i || k == P.j) continue;
+        a_i = m_at(M, k, P.i), a_j = m_at(M, k, P.j);
+        m_at(M, k, P.i) = m_at(M, P.i, k) = P.c*a_i - P.s*a_j;
+        m_at(M, k, P.j) = m_at(M, P.j, k) = P.c*a_j + P.s*a_i;
     }
-    a_i = m_at(M, i, i), a_j = m_at(M, j, j), a_ij = m_at(M, i, j);
-    m_at(M, i, i) = square(c)*a_i + square(s)*a_j - 2*s*c*a_ij;
-    m_at(M, j, j) = square(s)*a_i + square(c)*a_j + 2*s*c*a_ij;
-    m_at(M, i, j) = m_at(M, j, i) = 0;
+    a_i = m_at(M, P.i, P.i), a_j = m_at(M, P.j, P.j), a_ij = m_at(M, P.i, P.j);
+    m_at(M, P.i, P.i) = square(P.c)*a_i + square(P.s)*a_j - 2*P.s*P.c*a_ij;
+    m_at(M, P.j, P.j) = square(P.s)*a_i + square(P.c)*a_j + 2*P.s*P.c*a_ij;
+    m_at(M, P.i, P.j) = m_at(M, P.j, P.i) = 0;
 }
 
 EIGENVS eigenvalues_eigenvectors(MATRIX S) {
-    const unsigned n = S.num_rows;
-    unsigned iter = 0, i, j;
+    unsigned iter = 0;
     double prev_largest_off, curr_largest_off;
     ROTATION P;
     EIGENVS res;
-    res.matrix = identity_matrix(n);
+    res.matrix = identity_matrix(S.num_rows);
     if (is_null(res.matrix)) return NULL_EIGENVS;
 
-    find_largest_offdiagonal_and_sum_upper(S, &i, &j, &curr_largest_off);
-    if (curr_largest_off > 0) do {
+    find_largest_offdiagonal_and_sum_upper(S, &P.i, &P.j, &curr_largest_off);
+    do {
+        if (curr_largest_off == 0) break;
         prev_largest_off = curr_largest_off;
-        /* calculate P */
+        /* calculate and update c and s */
         {
-            double theta = (m_at(S, j, j) - m_at(S, i, i)) / (2 * m_at(S, i, j));
+            double theta = (m_at(S, P.j, P.j) - m_at(S, P.i, P.i)) / (2 * m_at(S, P.i, P.j));
             short sign = (theta >= 0) - (theta < 0);
             double t = sign / (sign*theta + sqrt(square(theta) + 1));
-            double c = 1 / sqrt(square(t) + 1);
-            double s = t * c;
-            P.c = c; P.s = s; P.i = i; P.j = j;
+            P.c = 1 / sqrt(square(t) + 1);
+            P.s = t * P.c;
         }
         pivot_inplace(S, P);
         left_rotate_inplace(res.matrix, P);
-        find_largest_offdiagonal_and_sum_upper(S, &i, &j, &curr_largest_off);
-    } while (++iter < maxIter && prev_largest_off - curr_largest_off > epsilon);
+        find_largest_offdiagonal_and_sum_upper(S, &P.i, &P.j, &curr_largest_off);
+    } while (++iter < MAX_ITER && prev_largest_off - curr_largest_off > EPSILON);
 
     /* extract eigenvalues */
     {
-        res.vector = alloc_vector(n);
+        unsigned i;
+        res.vector = alloc_vector(S.num_rows);
         if (is_null(res.vector)) return NULL_EIGENVS;
-        for (i = 0; i < n; i++) v_at(res.vector, i) = m_at(S, i, i);
+        for (i = 0; i < S.num_rows; i++) 
+            v_at(res.vector, i) = m_at(S, i, i);
     }
     return res;
 }
