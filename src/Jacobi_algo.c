@@ -24,13 +24,13 @@ void main()
     MATRIX A = alloc_matrix(2,2),B = alloc_matrix(2,2),C = alloc_matrix(2,2),D = alloc_matrix(2,2),E = alloc_matrix(2,2),F = alloc_matrix(2,2);
     m_at(A,0,0) = 2;
     m_at(A,0,1) = 3;
-    m_at(A,1,0) = 5;
+    m_at(A,1,0) = 3;
     m_at(A,1,1) = 7;
     //A is |2 3|
     //     |5 7|
 
     m_at(B,0,0) = 0;
-    m_at(B,0,1) = 0;
+    m_at(B,0,1) = 2;
     m_at(B,1,0) = 2;
     m_at(B,1,1) = 9;
     //B is |0 0|
