@@ -22,7 +22,7 @@ static void find_largest_offdiagonal_and_sum_upper
     *res_sum = 0;
 
     for (i = 0; i < S.num_rows; i++)
-        for (j = i+1; j < S.num_cols; j++) {
+        for (j = i + 1; j < S.num_cols; j++) {
             curr = m_at(S, i, j);
             curr = square(curr);
             *res_sum += curr;
