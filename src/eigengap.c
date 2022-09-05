@@ -15,8 +15,8 @@ typedef struct {
  */
 static void sort_inplace_rec(KEY *arr, unsigned length) {
     #define cmp(i, j, f, c)   (arr[i].f c arr[j].f)
-    #define less_than(i, j)       \
-        (cmp(i, j, val, ==) * cmp(i, j, pos, <) + cmp(i, j, val, <))
+    #define before(i, j)        \
+        (cmp(i, j, val, ==) * cmp(i, j, pos, <) + cmp(i, j, val, >))
     #define swap(i, j)  do {    \
         KEY temp = arr[i];      \
         arr[i] = arr[j];        \
@@ -24,12 +24,12 @@ static void sort_inplace_rec(KEY *arr, unsigned length) {
         } while (0)   
 
     unsigned start = 0, end = --length;
-    if (end - start == 1 && less_than(end, start)) {
+    if (end - start == 1 && before(end, start)) {
         swap(end, start);
         return;
     }
     else while (start < end) {
-        if (less_than(length, start)) {
+        if (before(length, start)) {
             end--;
             swap(start, end);
         }
@@ -40,7 +40,7 @@ static void sort_inplace_rec(KEY *arr, unsigned length) {
     if (length - end) sort_inplace_rec(arr + end + 1, length - end);
 
     #undef cmp
-    #undef less_than
+    #undef before
     #undef swap
 }
 
@@ -80,7 +80,7 @@ unsigned k_and_sort_inplace(MAT_AND_VEC *U) {
     if (sort_inplace(U)) return 0;
 
     for (i = 0; i < length / 2; i++) {
-        double delta = v_at(U->vector, length - 1 - i) - v_at(U->vector, length - 2 - i);
+        double delta = v_at(U->vector, i) - v_at(U->vector, i + 1);
         if (delta > max) {
             max = delta;
             k = i;

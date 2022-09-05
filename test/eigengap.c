@@ -19,8 +19,8 @@ void test_reduced_vectors() {
     // printf("%u\n", result->num_cols);
     assert(result.num_cols == 2);
     // print_matrix(result);
-    assert(m_at(result, 0, 0) == 3);
-    assert(m_at(result, 0, 1) == 4);
+    assert(m_at(result, 0, 0) == 9);
+    assert(m_at(result, 0, 1) == 8);
 
     // printf("%p\n", M->data[0]);
     free_matrix(input.matrix);
