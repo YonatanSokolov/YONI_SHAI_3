@@ -12,6 +12,7 @@ eigenvalues_and_eigenvectors Jacobi_algo(MATRIX A);
 eigenvalues_and_eigenvectors actual_Jacobi_algo(MATRIX A,MATRIX P);
 JACOBI_ROTATION_MATRIX compute_P(MATRIX A);
 bool converged(MATRIX A, MATRIX B);
+bool is_diagonal(MATRIX A);
 MATRIX calculate_ATAG(MATRIX A);
 void multiply_M_and_P(MATRIX M,JACOBI_ROTATION_MATRIX P);
 void print_JRM(JACOBI_ROTATION_MATRIX P);
@@ -84,7 +85,7 @@ eigenvalues_and_eigenvectors actual_Jacobi_algo(MATRIX A,MATRIX P)
     printf("succssfully created A'\n");
     JACOBI_ROTATION_MATRIX new_P = compute_P(A);
     // printf("succssfully created P\n");
-    if (!converged(A, ATAG))
+    if (!converged(A, ATAG) && !is_diagonal(A))
     {
         printf("before free_mat\n");
         free_matrix(A);
@@ -163,6 +164,18 @@ bool converged(MATRIX A, MATRIX B)
     }
     if (2*(off_A-off_B) <= epsilon){return true;}
     return false;
+}
+
+bool is_diagonal(MATRIX A)
+{
+    unsigned int i,j;
+    bool rslt = true;
+    for (i=0; i < A.num_rows-1; i++){
+        for (j=i+1; j < A.num_cols; j++){
+                if (m_at(A,i,j) != 0){rslt = false;}
+        }
+    }
+    return rslt;
 }
 
 
