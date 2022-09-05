@@ -8,10 +8,10 @@
 
 
 void test_diagonal_degree_matrix() {
-    MATRIX *W = read_vectors_from_file("test/lnorm_samp1.txt");
-    DIAGONAL_MATRIX *D = diagonal_degree_matrix(W);
-    assert(D);
-    assert(D->length == 3);
+    MATRIX W = read_vectors_from_file("test/lnorm_samp1.txt");
+    DIAGONAL_MATRIX D = diagonal_degree_matrix(W);
+    assert(!is_null(D));
+    assert(D.length == 3);
     assert(v_at(D, 0) == 3);
     assert(v_at(D, 0) == 3);
     assert(v_at(D, 0) == 3);
@@ -22,12 +22,12 @@ void test_diagonal_degree_matrix() {
 }
 
 void test_normalized_graph_laplacian() {
-    MATRIX *W = read_vectors_from_file("test/lnorm_samp1.txt");
-    DIAGONAL_MATRIX *D = diagonal_degree_matrix(W);
-    MATRIX *L = normalized_graph_laplacian(W, D);
+    MATRIX W = read_vectors_from_file("test/lnorm_samp1.txt");
+    DIAGONAL_MATRIX D = diagonal_degree_matrix(W);
+    MATRIX L = normalized_graph_laplacian(W, D);
 
-    assert(L);
-    assert(L->num_cols == L->num_rows && L->num_cols == 3);
+    assert(!is_null(L));
+    assert(L.num_cols == L.num_rows && L.num_cols == 3);
     for (unsigned i = 0; i < 3; i++)
         for (unsigned j = i + 1; j < 3; j++)
             assert(m_at(L, i, j) == m_at(L, j, i));
