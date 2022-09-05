@@ -65,8 +65,9 @@ eigenvalues_and_eigenvectors actual_Jacobi_algo(MATRIX A,MATRIX P)
     else
     {
         free_matrix(A);
-        printf("before created eigenvalus\n");
+        printf("before created eigenvalus %u\n", ATAG.num_cols);
         VECTOR eigenvalues = alloc_vector(ATAG.num_cols);
+        printf("hi!\n");
         for (i=0;i<ATAG.num_rows;i++){
             v_at(eigenvalues,i) = m_at(ATAG,i,i);
         }
