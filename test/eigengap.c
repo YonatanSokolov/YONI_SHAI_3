@@ -6,6 +6,7 @@
 
 void test_reduced_vectors() {
     MATRIX M = read_vectors_from_file("test/eigengap_samp1.txt");
+    // print_matrix(M);
     // double evals[];
     VECTOR V = {.data = (double []) {9.,2.,4.,6.,1.,1.,8.}, .length = 7};
     MAT_AND_VEC input = {M, V};
@@ -19,7 +20,7 @@ void test_reduced_vectors() {
     assert(result.num_cols == 2);
     // print_matrix(result);
     assert(m_at(result, 0, 0) == 3);
-    assert(m_at(result, 0, 1) == 3);
+    assert(m_at(result, 0, 1) == 4);
 
     // printf("%p\n", M->data[0]);
     free_matrix(input.matrix);

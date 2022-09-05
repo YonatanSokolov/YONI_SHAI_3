@@ -18,14 +18,14 @@ MATRIX read_vectors_from_file(const char *file_name) {
         fseek(file, 0, SEEK_SET);
     }
 
-    res = alloc_matrix(vec_dim, num_vecs);
+    res = alloc_matrix(num_vecs, vec_dim);
     if (is_null(res)) return NULL_MATRIX;
 
     /* read data from file into memory */
     {
         unsigned i, j;
-        for (j = 0; j < num_vecs; j++)
-            for (i = 0; i < vec_dim; i++) {
+        for (i = 0; i < num_vecs; i++)
+            for (j = 0; j < vec_dim; j++) {
                 fscanf(file, "%lf", &m_at(res, i, j));
                 getc(file);
             }
