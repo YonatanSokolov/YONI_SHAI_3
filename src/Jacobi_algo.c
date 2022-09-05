@@ -84,7 +84,7 @@ JACOBI_ROTATION_MATRIX compute_P(MATRIX A){
     unsigned int maximal_col;
     for (i=0; i < A.num_rows -1; i++){
         for (j=i+1; j < A.num_cols; j++){
-            if (abs(m_at(A,i,j)) > abs(maximal_element)){
+            if (fabs(m_at(A,i,j)) > fabs(maximal_element)){
                 maximal_element = m_at(A,i,j);
                 maximal_row = i;
                 maximal_col = j;
@@ -92,7 +92,7 @@ JACOBI_ROTATION_MATRIX compute_P(MATRIX A){
         }
     }
     double theta = (m_at(A,maximal_col,maximal_col)-m_at(A,maximal_row,maximal_row))/(2*maximal_element);
-    double t = sign(theta)/(abs(theta)+sqrt(theta*theta +1));
+    double t = sign(theta)/(fabs(theta)+sqrt(theta*theta +1));
     double c = 1/(sqrt(t*t + 1));
     double s = t*c;
     JACOBI_ROTATION_MATRIX rslt;
