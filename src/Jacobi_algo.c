@@ -169,13 +169,14 @@ bool converged(MATRIX A, MATRIX B)
 
 MATRIX calculate_ATAG(MATRIX A)
 {
-    // printf("before created ATAG :)\n");
+    printf("before created ATAG :)\n");
     MATRIX ATAG = alloc_matrix(A.num_rows, A.num_cols);
     if(is_null(ATAG)){printf("NULL_MATRIX!!!!!!!!!!\n");}
-    // printf("after created ATAG :))\n");
+    printf("after created ATAG :))\n");
     // int a = 9; a++; // why TF this works!!!!
     JACOBI_ROTATION_MATRIX P;
     P = compute_P(A);
+    printf("the relevant P is : i = %i, j = %i, c = %f, s = %f \n",P.i,P.j,P.c,P.s);
     double c = P.c;
     double s = P.s; 
     unsigned int i,j;
