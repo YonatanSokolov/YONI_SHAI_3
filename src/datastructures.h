@@ -54,3 +54,10 @@ typedef struct{
 } JACOBI_ROTATION_MATRIX;
 
 #endif /*__datastructures__*/
+
+/*
+#define is_null(DS) !DS.data
+
+MATRIX NULL_MATRIX;
+VECTOR NULL_VECTOR;
+*/
