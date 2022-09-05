@@ -79,6 +79,7 @@ eigenvalues_and_eigenvectors actual_Jacobi_algo(MATRIX A,MATRIX P)
 {
     unsigned int i;
     // printf("before created A'\n");
+    printf("before ATAG make sure that  %i   %i   are the size." ,A.num_cols,A.num_rows);
     MATRIX ATAG = calculate_ATAG(A);
     printf("succssfully created A'\n");
     JACOBI_ROTATION_MATRIX new_P = compute_P(A);
