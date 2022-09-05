@@ -3,13 +3,12 @@
 
 #define is_null(DS) !DS.data
 
-MATRIX NULL_MATRIX;
-VECTOR NULL_VECTOR;
-
 typedef struct {
     unsigned num_rows, num_cols;
     double *data;
 } MATRIX;
+
+MATRIX NULL_MATRIX;
 
 /**
  * Allocates memory for matrix of specified size.
@@ -27,6 +26,8 @@ typedef struct {
     unsigned length;
     double *data;
 } VECTOR;
+
+VECTOR NULL_VECTOR;
 
 typedef VECTOR DIAGONAL_MATRIX;
 

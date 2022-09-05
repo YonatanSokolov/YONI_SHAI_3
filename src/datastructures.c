@@ -5,8 +5,6 @@ MATRIX NULL_MATRIX = {0, 0, NULL};
 VECTOR NULL_VECTOR = {0, NULL};
 
 MATRIX alloc_matrix(unsigned num_rows, unsigned num_cols) {
-    unsigned j;
-
     MATRIX matrix;
     double *data = (double *) malloc(num_rows * num_cols * sizeof(double));
     if (!data) return NULL_MATRIX;
