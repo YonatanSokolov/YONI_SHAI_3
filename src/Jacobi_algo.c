@@ -186,15 +186,15 @@ void multiply_M_and_P(MATRIX M,JACOBI_ROTATION_MATRIX P)
     unsigned int i,j;
     // printf("before created copyyyyy\n");
     MATRIX copy = alloc_matrix(M.num_rows,M.num_cols);
-    for (j=0; j <= copy.num_cols ;j++)
+    for (j=0; j < copy.num_cols ;j++)
     {
-        for (i=0; i <= copy.num_rows; i++)
+        for (i=0; i < copy.num_rows; i++)
         {
             m_at(copy,i,j) = m_at(M,i,j);
         }
     }
     // printf("after created copyyyy\n");
-    for (i=0; i<= M.num_cols;i++){
+    for (i=0; i < M.num_cols;i++){
         m_at(copy,i,P.i) = (P.c)*m_at(M,i,P.i) - (P.s)*m_at(M,i,P.j);
         m_at(copy,i,P.j) = (P.s)*m_at(M,i,P.i) + (P.c)*m_at(M,i,P.j);
     }
