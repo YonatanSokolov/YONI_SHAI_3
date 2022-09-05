@@ -30,6 +30,7 @@ eigenvalues_and_eigenvectors Jacobi_algo(MATRIX A)
 {
     unsigned int i,j;
     MATRIX id = alloc_matrix(A.num_rows,A.num_cols);
+    printf("succssfully allocated identity matrix");
     for (j=0; j<A.num_cols; j++)
     {
         for (i=0; i<A.num_rows; i++)
@@ -49,8 +50,11 @@ eigenvalues_and_eigenvectors Jacobi_algo(MATRIX A)
 eigenvalues_and_eigenvectors actual_Jacobi_algo(MATRIX A,MATRIX P)
 {
     unsigned int i;
+    printf("before created A'");
     MATRIX ATAG = calculate_ATAG(A);
+    printf("succssfully created A'");
     JACOBI_ROTATION_MATRIX new_P = compute_P(A);
+    printf("succssfully created P");
     if (!converged(A, ATAG))
     {
         free_matrix(A);
@@ -61,23 +65,25 @@ eigenvalues_and_eigenvectors actual_Jacobi_algo(MATRIX A,MATRIX P)
     else
     {
         free_matrix(A);
-        
+        printf("before created eigenvalus");
         VECTOR eigenvalues = alloc_vector(ATAG.num_cols);
         for (i=0;i<ATAG.num_rows;i++){
             v_at(eigenvalues,i) = m_at(ATAG,i,i);
         }
+        printf("success created eigenvalus");
+        printf("before created M*P");
         multiply_M_and_P(P,new_P);
+        printf("after created M*P");
         eigenvalues_and_eigenvectors rslt;
+        printf("before created rslt");
         rslt.vector = eigenvalues;
         rslt.matrix = P;
         return (rslt);
     }
 }
 
-
-
-
 JACOBI_ROTATION_MATRIX compute_P(MATRIX A){
+
     unsigned int i,j;
     double maximal_element = 0; //this assumes that the matrix isn't empty
     unsigned int maximal_row;
@@ -96,7 +102,6 @@ JACOBI_ROTATION_MATRIX compute_P(MATRIX A){
     double c = 1/(sqrt(t*t + 1));
     double s = t*c;
     JACOBI_ROTATION_MATRIX rslt;
-    //malloc and check thereis memory
     rslt.c = c;
     rslt.s = s;
     rslt.i = i;
@@ -129,8 +134,9 @@ bool converged(MATRIX A, MATRIX B)
 
 MATRIX calculate_ATAG(MATRIX A)
 {
+    printf("before created ATAG :)");
     MATRIX ATAG = alloc_matrix(A.num_rows,A.num_cols);
-    //if (!ATAG) {return NULL;}
+    printf("after created ATAG :))");
     JACOBI_ROTATION_MATRIX P;
     P = compute_P(A);
     double c = P.c;
@@ -170,6 +176,7 @@ void multiply_M_and_P(MATRIX M,JACOBI_ROTATION_MATRIX P)
 {
     //multiplys in-place in M
     unsigned int i,j;
+    printf("before created copyyyyy");
     MATRIX copy = alloc_matrix(M.num_rows,M.num_cols);
     for (j=0; j <= copy.num_cols ;j++)
     {
@@ -178,6 +185,7 @@ void multiply_M_and_P(MATRIX M,JACOBI_ROTATION_MATRIX P)
             m_at(copy,i,j) = m_at(M,i,j);
         }
     }
+    printf("after created copyyyy");
     for (i=0; i<= M.num_cols;i++){
         m_at(copy,i,P.i) = (P.c)*m_at(M,i,P.i) - (P.s)*m_at(M,i,P.j);
         m_at(copy,i,P.j) = (P.s)*m_at(M,i,P.i) + (P.c)*m_at(M,i,P.j);
