@@ -19,6 +19,26 @@ void multiply_M_and_P(MATRIX M,JACOBI_ROTATION_MATRIX P);
 
 void main()
 {
+    //test1 - compute P
+    MATRIX A = alloc_matrix(2,2),B = alloc_matrix(2,2),C = alloc_matrix(2,2),D = alloc_matrix(2,2),E = alloc_matrix(2,2),F = alloc_matrix(2,2);
+    m_at(A,0,0) = 2;
+    m_at(A,0,1) = 3;
+    m_at(A,1,0) = 5;
+    m_at(A,1,1) = 7;
+    //A is |2 3|
+    //     |5 7|
+
+    m_at(B,0,0) = 0;
+    m_at(B,0,1) = 0;
+    m_at(B,1,0) = 2;
+    m_at(B,1,1) = 9;
+    //B is |0 0|
+    //     |2 9|
+    JACOBI_ROTATION_MATRIX P1 = compute_P(A);
+    JACOBI_ROTATION_MATRIX P2 = compute_P(B);
+    print_JRM(P1);
+    print_JRM(P2);
+
     // printf("!\n");
     MATRIX A = alloc_matrix(2,2);
     m_at(A,0,0) = 2;
@@ -29,6 +49,12 @@ void main()
     eigenvalues_and_eigenvectors rslt = Jacobi_algo(A);
     printf("%f%f%f%f\n",m_at(rslt.matrix,0,0),m_at(rslt.matrix,0,1),m_at(rslt.matrix,1,0),m_at(rslt.matrix,1,1));
 }
+
+void print_JRM(JACOBI_ROTATION_MATRIX P)
+{
+     printf("i= %i j= %i c= %f s= %f\n",P.i,P.j,P.c,P.s); 
+}
+
 
 eigenvalues_and_eigenvectors Jacobi_algo(MATRIX A)
 {
