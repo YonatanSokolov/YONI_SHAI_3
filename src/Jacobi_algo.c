@@ -15,7 +15,16 @@ void multiply_M_and_P(MATRIX M,JACOBI_ROTATION_MATRIX P);
 
 
 
-
+void main()
+{
+    MATRIX A = alloc_matrix(2,2);
+    m_at(A,0,0) = 2;
+    m_at(A,0,1) = 3;
+    m_at(A,1,0) = 5;
+    m_at(A,1,1) = 7;
+    eigenvalues_and_eigenvectors rslt = Jacobi_algo(A);
+    printf("%f%f%f%f",m_at(rslt.matrix,0,0),m_at(rslt.matrix,0,1),m_at(rslt.matrix,1,0),m_at(rslt.matrix,1,1));
+}
 
 eigenvalues_and_eigenvectors Jacobi_algo(MATRIX A)
 {
