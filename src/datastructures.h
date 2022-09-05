@@ -48,6 +48,8 @@ typedef struct {
     VECTOR vector;
 } MAT_AND_VEC;
 
+MAT_AND_VEC NULL_MAT_AND_VEC;
+
 typedef MAT_AND_VEC eigenvalues_and_eigenvectors;
 
 typedef struct{

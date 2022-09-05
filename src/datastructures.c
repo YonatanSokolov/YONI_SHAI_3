@@ -3,6 +3,7 @@
 
 MATRIX NULL_MATRIX = {0, 0, NULL};
 VECTOR NULL_VECTOR = {0, NULL};
+MAT_AND_VEC NULL_MAT_AND_VEC = {{0, 0, NULL}, {0, NULL}};
 
 MATRIX alloc_matrix(unsigned num_rows, unsigned num_cols) {
     MATRIX matrix;
