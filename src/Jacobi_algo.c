@@ -182,16 +182,19 @@ MATRIX calculate_ATAG(MATRIX A)
         for (i=j; i < A.num_rows; i++){
             if ((i == P.i)&&(j != P.i)&&(j != P.j))
             {
+                printf("first_if %i  %i\n",i,j);
                 m_at(ATAG,i,j) = c*m_at(A,i,P.i) -s*m_at(A,i,P.j);
                 m_at(ATAG,j,i) = c*m_at(A,i,P.i) -s*m_at(A,i,P.j);
             }
             if ((i == P.j)&&(j != P.i)&&(j != P.j))
             {
+                printf("sec_if %i  %i\n",i,j);
                 m_at(ATAG,i,j) = c*m_at(A,i,P.j) +s*m_at(A,i,P.i);
                 m_at(ATAG,j,i) = c*m_at(A,i,P.j) +s*m_at(A,i,P.i);
             }
             else 
             {
+                printf("else %i  %i\n",i,j);
                 m_at(ATAG,i,j) = m_at(A,i,j);
                 m_at(ATAG,j,i) = m_at(A,i,j);
             }
@@ -201,6 +204,7 @@ MATRIX calculate_ATAG(MATRIX A)
     m_at(ATAG,P.j,P.j) = s*s*m_at(A,P.i,P.i) + c*c*m_at(A,P.j,P.j)+2*s*c*m_at(A,P.i,P.j);
     m_at(ATAG,P.i,P.j) = 0;
     m_at(ATAG,P.j,P.i) = 0;
+    printf("calculation_finished");
     return ATAG;
 }
 
