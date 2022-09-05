@@ -27,13 +27,13 @@ void main()
     m_at(A,1,0) = 3;
     m_at(A,1,1) = 7;
     //A is |2 3|
-    //     |5 7|
+    //     |3 7|
 
     m_at(B,0,0) = 0;
     m_at(B,0,1) = 2;
     m_at(B,1,0) = 2;
     m_at(B,1,1) = 9;
-    //B is |0 0|
+    //B is |0 2|
     //     |2 9|
     JACOBI_ROTATION_MATRIX P1 = compute_P(A);
     JACOBI_ROTATION_MATRIX P2 = compute_P(B);
@@ -41,11 +41,11 @@ void main()
     print_JRM(P2);
     //test matrix multiplication
     MATRIX ATAG = calculate_ATAG(A);
-    printf("this is ATAG%f%f%f%f\n",m_at(ATAG,0,0),m_at(ATAG,0,1),m_at(ATAG,1,0),m_at(ATAG,1,1));
+    printf("this is %f %f %f %f\n",m_at(ATAG,0,0),m_at(ATAG,0,1),m_at(ATAG,1,0),m_at(ATAG,1,1));
     
 
     eigenvalues_and_eigenvectors rslt = Jacobi_algo(A);
-    printf("%f%f%f%f\n",m_at(rslt.matrix,0,0),m_at(rslt.matrix,0,1),m_at(rslt.matrix,1,0),m_at(rslt.matrix,1,1));
+    printf("%f  %f  %f  %f\n",m_at(rslt.matrix,0,0),m_at(rslt.matrix,0,1),m_at(rslt.matrix,1,0),m_at(rslt.matrix,1,1));
 }
 
 void print_JRM(JACOBI_ROTATION_MATRIX P)
