@@ -39,6 +39,10 @@ void main()
     JACOBI_ROTATION_MATRIX P2 = compute_P(B);
     print_JRM(P1);
     print_JRM(P2);
+    //test matrix multiplication
+    MATRIX ATAG = calculate_ATAG(A);
+    printf("this is ATAG%f%f%f%f\n",m_at(ATAG,0,0),m_at(ATAG,0,1),m_at(ATAG,1,0),m_at(ATAG,1,1));
+    
 
     eigenvalues_and_eigenvectors rslt = Jacobi_algo(A);
     printf("%f%f%f%f\n",m_at(rslt.matrix,0,0),m_at(rslt.matrix,0,1),m_at(rslt.matrix,1,0),m_at(rslt.matrix,1,1));
