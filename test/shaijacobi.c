@@ -8,8 +8,8 @@
 
 void test_eigenvalues_eigenvectors() {
     MATRIX A = read_vectors_from_file("test/shaijaconi_samp1.txt");
-    // printf("S = \n");
-    // print_matrix(A);
+    printf("S = \n");
+    print_matrix(A);
     MAT_AND_VEC res = eigenvalues_eigenvectors(A);
     MAT_AND_VEC prob_res = {
         .vector = {3, (double []) {1.6099,0.2357,1.1545}},
@@ -17,8 +17,8 @@ void test_eigenvalues_eigenvectors() {
             (double []) {0.7283,0.6565,-0.1964,-0.6712,0.6256,-0.3976,-0.1381,0.4214,0.8963}
         }
     };
-    // printf("res = \n");
-    // print_matrix_and_vector(res);
+    printf("res = \n");
+    print_matrix_and_vector(res);
     
     assert(!is_null(res.matrix));
     assert(!is_null(res.vector));

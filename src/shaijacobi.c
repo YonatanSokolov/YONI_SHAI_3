@@ -75,7 +75,7 @@ EIGENVS eigenvalues_eigenvectors(MATRIX S) {
     if (is_null(res.matrix)) return NULL_EIGENVS;
 
     find_largest_offdiagonal_and_sum_upper(S, &i, &j, &curr_largest_off);
-    do {
+    if (curr_largest_off > 0) do {
         prev_largest_off = curr_largest_off;
         /* calculate P */
         {
