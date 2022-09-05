@@ -15,4 +15,6 @@ void print_matrix(MATRIX M);
 
 void print_matrix_and_vector(MAT_AND_VEC mav);
 
+void print_diagonal_matrix(DIAGONAL_MATRIX D);
+
 #endif /*__myIO__*/
