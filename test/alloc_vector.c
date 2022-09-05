@@ -4,9 +4,9 @@
 
 void test_alloc_vector() {
     MATRIX ATAG = {1, 2, NULL};
+
     VECTOR v1 = alloc_vector(ATAG.num_cols);
     v_at(v1, 1) = 2;
-
     assert(!is_null(v1));
     assert(v1.length == 2);
     assert(v_at(v1, 1) == 2);

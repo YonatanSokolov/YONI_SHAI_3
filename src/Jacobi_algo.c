@@ -6,6 +6,8 @@
 #define sign(x)   ((x >= 0) - (x < 0))
 #define epsilon 0.00001
 
+#include <stdlib.h>
+
 eigenvalues_and_eigenvectors Jacobi_algo(MATRIX A);
 eigenvalues_and_eigenvectors actual_Jacobi_algo(MATRIX A,MATRIX P);
 JACOBI_ROTATION_MATRIX compute_P(MATRIX A);
@@ -30,7 +32,7 @@ eigenvalues_and_eigenvectors Jacobi_algo(MATRIX A)
 {
     unsigned int i,j;
     MATRIX id = alloc_matrix(A.num_rows,A.num_cols);
-    printf("succssfully allocated identity matrix\n");
+    // printf("succssfully allocated identity matrix\n");
     for (j=0; j<A.num_cols; j++)
     {
         for (i=0; i<A.num_rows; i++)
@@ -50,11 +52,11 @@ eigenvalues_and_eigenvectors Jacobi_algo(MATRIX A)
 eigenvalues_and_eigenvectors actual_Jacobi_algo(MATRIX A,MATRIX P)
 {
     unsigned int i;
-    printf("before created A'\n");
+    // printf("before created A'\n");
     MATRIX ATAG = calculate_ATAG(A);
-    printf("succssfully created A'\n");
+    // printf("succssfully created A'\n");
     JACOBI_ROTATION_MATRIX new_P = compute_P(A);
-    printf("succssfully created P\n");
+    // printf("succssfully created P\n");
     if (!converged(A, ATAG))
     {
         free_matrix(A);
@@ -65,6 +67,8 @@ eigenvalues_and_eigenvectors actual_Jacobi_algo(MATRIX A,MATRIX P)
     else
     {
         free_matrix(A);
+        printf("got here (10)\n");
+        // malloc(1);
         printf("before created eigenvalus %u\n", ATAG.num_cols);
         VECTOR eigenvalues = alloc_vector(ATAG.num_cols);
         printf("hi!\n");
@@ -72,11 +76,11 @@ eigenvalues_and_eigenvectors actual_Jacobi_algo(MATRIX A,MATRIX P)
             v_at(eigenvalues,i) = m_at(ATAG,i,i);
         }
         printf("success created eigenvalus\n");
-        printf("before created M*P\n");
+        // printf("before created M*P\n");
         multiply_M_and_P(P,new_P);
-        printf("after created M*P\n");
+        // printf("after created M*P\n");
         eigenvalues_and_eigenvectors rslt;
-        printf("before created rslt\n");
+        // printf("before created rslt\n");
         rslt.vector = eigenvalues;
         rslt.matrix = P;
         return (rslt);
@@ -135,9 +139,10 @@ bool converged(MATRIX A, MATRIX B)
 
 MATRIX calculate_ATAG(MATRIX A)
 {
-    printf("before created ATAG :)\n");
+    // printf("before created ATAG :)\n");
     MATRIX ATAG = alloc_matrix(A.num_rows,A.num_cols);
     printf("after created ATAG :))\n");
+    int a = 9; a++; // why TF this works!!!!
     JACOBI_ROTATION_MATRIX P;
     P = compute_P(A);
     double c = P.c;
@@ -177,7 +182,7 @@ void multiply_M_and_P(MATRIX M,JACOBI_ROTATION_MATRIX P)
 {
     //multiplys in-place in M
     unsigned int i,j;
-    printf("before created copyyyyy\n");
+    // printf("before created copyyyyy\n");
     MATRIX copy = alloc_matrix(M.num_rows,M.num_cols);
     for (j=0; j <= copy.num_cols ;j++)
     {
@@ -186,7 +191,7 @@ void multiply_M_and_P(MATRIX M,JACOBI_ROTATION_MATRIX P)
             m_at(copy,i,j) = m_at(M,i,j);
         }
     }
-    printf("after created copyyyy\n");
+    // printf("after created copyyyy\n");
     for (i=0; i<= M.num_cols;i++){
         m_at(copy,i,P.i) = (P.c)*m_at(M,i,P.i) - (P.s)*m_at(M,i,P.j);
         m_at(copy,i,P.j) = (P.s)*m_at(M,i,P.i) + (P.c)*m_at(M,i,P.j);
