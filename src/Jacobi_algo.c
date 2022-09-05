@@ -170,7 +170,7 @@ MATRIX calculate_ATAG(MATRIX A)
 {
     // printf("before created ATAG :)\n");
     MATRIX ATAG = alloc_matrix(A.num_rows, A.num_cols);
-    if(is_null(ATAG)){printf("NULL_MATRIX!!!!!!!!!!");}
+    if(is_null(ATAG)){printf("NULL_MATRIX!!!!!!!!!!\n");}
     // printf("after created ATAG :))\n");
     // int a = 9; a++; // why TF this works!!!!
     JACOBI_ROTATION_MATRIX P;
