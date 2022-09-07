@@ -4,6 +4,8 @@ import sys
 import numpy as np
 import pandas as pd
 
+np.impor
+
 INVALID_INPUT_MSG = 'Invalid Input!'
 ERROR_MSG = 'An Error Has Occurred'
 
@@ -29,21 +31,39 @@ def get_input():
 def kmeans_pp(vectors: np.ndarray):
     pass
 
+def kmeans_pp(vectors: np.ndarray):
+    """
+    runs k-means++ algorithms and returns its result (k = dim.)
+    """
+    num_vecs, dim = vectors.shape
+    np.random.seed(0)
+    res = [ np.random.choice(num_vecs) ]
+    norm_squared = lambda v: np.inner(v, v)
+
+    for _ in range(1, dim):
+        P = np.fromiter((min(norm_squared(vectors[l] - vectors[j]) for j in res) \
+            for l in range(num_vecs)), float) 
+        P = P / np.sum(P)
+        res.append(np.random.choice(num_vecs, p=P))
+    
+    return res
+
+
 def main():
     try:
         k, goal, input_file_name = get_input()
     except:
         sys.exit(INVALID_INPUT_MSG)
     try:
-        if goal == -1:
-            vectors = mykmeanssp.fit(k, input_file_name)
+        if goal == goals['jacobi']:
+            vectors = mykmeanssp.transform(k, input_file_name)
+            assert vectors != None
             initial_centroids = kmeans_pp(vectors)
-            mykmeanssp.kmeans(vectors, initial_centroids)
+            assert mykmeanssp.kmeans(vectors, initial_centroids) == 0
         else:
-            mykmeanssp.run(goal, input_file_name)
+            assert mykmeanssp.run(goal, input_file_name) == 0
     except:
         sys.exit(ERROR_MSG)
-    pass
 
 if __name__ == '__main__':
     main()

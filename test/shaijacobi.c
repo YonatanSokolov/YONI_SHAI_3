@@ -65,6 +65,16 @@ void test_eigenvalues_eigenvectors() {
     // free_matrix(res.matrix);
     // free_vector(res.vector);
 
+    A = read_vectors_from_file("test/shaijaconi_samp5.txt");
+    printf("S = \n");
+    print_matrix(A);
+    res = eigenvalues_eigenvectors(A);
+    printf("res = \n");
+    print_matrix_and_vector(res);
+    free_matrix(A);
+    free_matrix(res.matrix);
+    free_vector(res.vector);
+
     printf("~test~ eigenvalues_eigenvectors DONE\n");
 
     /* should print:
