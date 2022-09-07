@@ -1,6 +1,8 @@
 #ifndef __datastructures__
 #define __datastructures__
 
+typedef enum {WAM, DDG, LNORM, JACOBI} GOAL;
+
 #define is_null(DS) !DS.data
 
 typedef struct {
