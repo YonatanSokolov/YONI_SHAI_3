@@ -108,6 +108,7 @@ eigenvalues_and_eigenvectors actual_Jacobi_algo(MATRIX A,MATRIX P)
     // printf("succssfully created P\n");
     if (is_diagonal(ATAG) == true){printf("ATAG is diagonal! these are zeros: %f %f %f\n",m_at(ATAG,0,1),m_at(ATAG,0,2),m_at(ATAG,1,2));}
     if (is_diagonal(ATAG) == false){printf("ATAG is NOT diagonal! these are NOT zeros: %f %f %f\n",m_at(ATAG,0,1),m_at(ATAG,0,2),m_at(ATAG,1,2));}
+    if (converged(A,ATAG))
     if (!converged(A, ATAG) && !is_diagonal(ATAG) && num_iter < NUM_ITER)
     {
         num_iter +=1;
@@ -221,14 +222,14 @@ MATRIX calculate_ATAG(MATRIX A)
             if ((i == P.i)&&(j != P.i)&&(j != P.j))
             {
                 printf("first_if %i  %i\n",i,j);
-                m_at(ATAG,i,j) = c*m_at(A,i,P.i) -s*m_at(A,i,P.j);
-                m_at(ATAG,j,i) = c*m_at(A,i,P.i) -s*m_at(A,i,P.j);
+                m_at(ATAG,P.i,j) = c*m_at(A,P.i,j) -s*m_at(A,P.j,j);
+                m_at(ATAG,j,P.i) = c*m_at(A,P.i,j) -s*m_at(A,P.j,j);
             }
             if ((i == P.j)&&(j != P.i)&&(j != P.j))
             {
                 printf("sec_if %i  %i\n",i,j);
-                m_at(ATAG,i,j) = c*m_at(A,i,P.j) +s*m_at(A,i,P.i);
-                m_at(ATAG,j,i) = c*m_at(A,i,P.j) +s*m_at(A,i,P.i);
+                m_at(ATAG,j,P.j) = c*m_at(A,j,P.j) +s*m_at(A,j,P.j);
+                m_at(ATAG,P.j,j) = c*m_at(A,j,P.j) +s*m_at(A,j,P.j);
             }
             else 
             {
