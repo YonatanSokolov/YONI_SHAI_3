@@ -399,13 +399,34 @@ print_all_vectors(
    }
 }
 */
-int kmeans_wrapper(double         *vectors_array,
+int kmeans(double         *vectors_array,
+                   double         *centroids_array,
+                   unsigned int  vectors_num,
+                   unsigned int  vector_dim)
+{
+    unsigned  int i, j;
+    ret_code_t kmeans = alg2(vector_dim, MAX_ITER, EPSILON, vectors_array, vectors_num, vector_dim, centroids_array);
+    for (i = 0; i < vectors_num; i++)
+    {
+        double *centroid = get_element(centroids_array, i, vector_dim);
+        for(j = 0; j < vector_dim; j++)
+            {
+                printf("%.4f%c", centroids_array[j], j + 1 == vector_dim ? '\n' : ',');
+            } 
+    } 
+    return (int)kmeans;
+}
+/*
+int kmeans_wrapper_2(double         *vectors_array,
                    double         *centroids_array,
                    int  vectors_num,
                    int  vector_dim)
-
-
 {
+    double         *vectors_array;
+    double         *centroids_array;
+    int  vectors_num;
+    int  vector_dim;
+    
     unsigned i, j;
     ret_code_t kmeans = alg2(vector_dim, MAX_ITER, EPSILON, vectors_array, vectors_num, vector_dim, centroids_array);
     for (i = 0; i < vectors_num; i++)
@@ -416,6 +437,6 @@ int kmeans_wrapper(double         *vectors_array,
                 printf("%.4f%c", centroids_array[j], j + 1 == vector_dim ? '\n' : ',');
             } 
     } 
-    
     return kmeans;
 }
+*/
