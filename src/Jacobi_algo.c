@@ -61,11 +61,11 @@ void main()
     eigenvalues_and_eigenvectors rslt_c = Jacobi_algo(C);
     printf("results for matrix C:\n");
     printf("---------------------------------------------------------------------------------------\n");
-    printf("matrix:");
+    printf("matrix:\n");
     printf("[%f  %f  %f] \n",m_at(rslt_c.matrix,0,0),m_at(rslt_c.matrix,0,1),m_at(rslt_c.matrix,0,2));
     printf("[%f  %f  %f] \n",m_at(rslt_c.matrix,1,0),m_at(rslt_c.matrix,1,1),m_at(rslt_c.matrix,1,2));
     printf("[%f  %f  %f] \n",m_at(rslt_c.matrix,2,0),m_at(rslt_c.matrix,2,1),m_at(rslt_c.matrix,2,2));
-    printf("vector:");
+    printf("vector:\n");
     printf("%f  %f %f\n",v_at(rslt_c.vector,0),v_at(rslt_c.vector,1),v_at(rslt_c.vector,2));
 
 
@@ -104,7 +104,8 @@ eigenvalues_and_eigenvectors actual_Jacobi_algo(MATRIX A,MATRIX P)
     printf("succssfully created A'\n");
     JACOBI_ROTATION_MATRIX new_P = compute_P(A);
     // printf("succssfully created P\n");
-    if( is_diagonal(ATAG) == true){printf("ATAG is diagonal! these are zeros: %f %f %f",m_at(ATAG,0,1),m_at(ATAG,0,2),m_at(ATAG,1,2));}
+    if (is_diagonal(ATAG) == true){printf("ATAG is diagonal! these are zeros: %f %f %f\n",m_at(ATAG,0,1),m_at(ATAG,0,2),m_at(ATAG,1,2));}
+    if (is_diagonal(ATAG) == false){printf("ATAG is NOT diagonal! these are NOT zeros: %f %f %f\n",m_at(ATAG,0,1),m_at(ATAG,0,2),m_at(ATAG,1,2));}
     if (!converged(A, ATAG) && !is_diagonal(ATAG))
     {
         printf("before free_mat\n");
