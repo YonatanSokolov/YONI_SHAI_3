@@ -102,8 +102,11 @@ eigenvalues_and_eigenvectors actual_Jacobi_algo(MATRIX A,MATRIX P)
         }
         printf("success created eigenvalus\n");
         // printf("before created M*P\n");
+        printf("the matrix is : [%f, %f, %f, %f]\n ",m_at(P,0,0),m_at(P,0,1),m_at(P,1,0),m_at(P,1,1));
+        printf("the P is : [c = %f, s = %f]\n ",new_P.c,new_P.s);
         P = multiply_M_and_P(P,new_P);
         // printf("after created M*P\n");
+        printf("the multiplication result is : [%f, %f, %f, %f]\n ",m_at(P,0,0),m_at(P,0,1),m_at(P,1,0),m_at(P,1,1));
         eigenvalues_and_eigenvectors rslt;
         // printf("before created rslt\n");
         rslt.vector = eigenvalues;
