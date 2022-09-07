@@ -52,7 +52,7 @@ def main():
         if goal == goals['spk']:
             vectors = mykmeanssp.transform(input_file_name, k)
             initial_centroids = kmeans_pp(vectors)
-            assert mykmeanssp.kmeans(vectors, initial_centroids) == 0
+            assert mykmeanssp.kmeans(vectors, initial_centroids, *vectors.shape) == 0
         else:
             assert mykmeanssp.run(goal, input_file_name) == 0
     except:

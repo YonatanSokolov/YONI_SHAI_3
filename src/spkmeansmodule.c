@@ -67,11 +67,26 @@ static PyObject* _transform(PyObject* self, PyObject *args) {
 }
 
 static PyObject* _kmeans(PyObject* self, PyObject *args) {
+    unsigned num_vecs, dim;
     PyArrayObject *vectors, *intial_centroids;
-    if (!PyArg_ParseTuple(args, "O!O!", &PyArray_Type, &vectors, 
-                                        &PyArray_Type, &intial_centroids))
-        return NULL;
-    return Py_BuildValue("i", kmeans(matrix_from_python_array(vectors), 
-                                     matrix_from_python_array(intial_centroids)));
+    if (
+        !PyArg_ParseTuple(args, "O!O!II", 
+                                &PyArray_Type, &vectors, 
+                                &PyArray_Type, &intial_centroids
+                                &num_vecs, &dim)
+    ) return NULL;
+    return Py_BuildValue("i", kmeans(
+        matrix_from_python_array(vectors), 
+        matrix_from_python_array(intial_centroids),
+        num_vecs, dim
+        ));
 }
 
+static PyObject* wrapper(PyObject* self, PyObject *args) {
+    int k, max_iter, numV, d;
+    double epsilon;
+    PyArrayObject *vectors, *res;
+    if(!PyArg_ParseTuple(args, "iidO!iiO!", &k, &max_iter, &epsilon, &PyArray_Type, &vectors, &numV, &d, &PyArray_Type, &res))
+        return NULL;
+    return Py_BuildValue("i", alg2(k, max_iter, epsilon, (double*)PyArray_DATA(vectors), numV, d, (double*)PyArray_DATA(res)));
+}
