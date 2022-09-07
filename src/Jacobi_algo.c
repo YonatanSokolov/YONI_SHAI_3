@@ -3,10 +3,9 @@
 #include <math.h>
 #include <stdbool.h>
 #include <string.h>
+#include <stdlib.h>
 #define sign(x)   ((x >= 0) - (x < 0))
 #define epsilon 0.00001
-
-#include <stdlib.h>
 
 eigenvalues_and_eigenvectors Jacobi_algo(MATRIX A);
 eigenvalues_and_eigenvectors actual_Jacobi_algo(MATRIX A,MATRIX P);
@@ -16,8 +15,6 @@ bool is_diagonal(MATRIX A);
 MATRIX calculate_ATAG(MATRIX A);
 void multiply_M_and_P(MATRIX M,JACOBI_ROTATION_MATRIX P);
 void print_JRM(JACOBI_ROTATION_MATRIX P);
-
-
 
 void main()
 {
@@ -36,13 +33,13 @@ void main()
     m_at(B,1,1) = 9;
     //B is |0 2|
     //     |2 9|
-    JACOBI_ROTATION_MATRIX P1 = compute_P(A);
-    JACOBI_ROTATION_MATRIX P2 = compute_P(B);
-    print_JRM(P1);
-    print_JRM(P2);
+    //JACOBI_ROTATION_MATRIX P1 = compute_P(A);
+    //JACOBI_ROTATION_MATRIX P2 = compute_P(B);
+    //print_JRM(P1);
+    //print_JRM(P2);
     //test matrix multiplication
-    MATRIX ATAG = calculate_ATAG(A);
-    printf("this is %f %f %f %f\n",m_at(ATAG,0,0),m_at(ATAG,0,1),m_at(ATAG,1,0),m_at(ATAG,1,1));
+    //MATRIX ATAG = calculate_ATAG(A);
+    //printf("this is %f %f %f %f\n",m_at(ATAG,0,0),m_at(ATAG,0,1),m_at(ATAG,1,0),m_at(ATAG,1,1));
     
 
     eigenvalues_and_eigenvectors rslt = Jacobi_algo(A);
@@ -53,7 +50,6 @@ void print_JRM(JACOBI_ROTATION_MATRIX P)
 {
      printf("i= %i j= %i c= %f s= %f\n",P.i,P.j,P.c,P.s); 
 }
-
 
 eigenvalues_and_eigenvectors Jacobi_algo(MATRIX A)
 {
@@ -72,9 +68,6 @@ eigenvalues_and_eigenvectors Jacobi_algo(MATRIX A)
     free_matrix(id);
     return rslt;
 }
-
-
-
 
 eigenvalues_and_eigenvectors actual_Jacobi_algo(MATRIX A,MATRIX P)
 {
@@ -146,9 +139,6 @@ JACOBI_ROTATION_MATRIX compute_P(MATRIX A){
     return rslt;
 } 
 
-
-
-
 //this is also called "convergence step"
 bool converged(MATRIX A, MATRIX B)
 {
@@ -177,9 +167,6 @@ bool is_diagonal(MATRIX A)
     }
     return rslt;
 }
-
-
-
 
 MATRIX calculate_ATAG(MATRIX A)
 {
@@ -223,10 +210,6 @@ MATRIX calculate_ATAG(MATRIX A)
     printf("calculation_finished\n");
     return ATAG;
 }
-
-
-
-
 
 void multiply_M_and_P(MATRIX M,JACOBI_ROTATION_MATRIX P)
 {
