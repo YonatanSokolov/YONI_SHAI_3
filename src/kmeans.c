@@ -345,60 +345,6 @@ static bool update_centroids(
    return no_another_loop;
 }
 
-
-
-
-
-/***************MAIN*****************/
-/*              int  centroids_num,
-                int  max_iter,
-                double          epsilon,
-                double         *vectors_array,
-                int  vectors_num,
-                int  vector_dim,
-                double         *centroids_array
-*/
-/*
-int main(void)
-{
-   int  centroids_num = 2;
-   int  max_iter = 10;
-   double          epsilon = 0.002;
-   double          vectors_array[4] = {1,2,3,4};
-   int  vectors_num =4;
-   int  vector_dim = 1;
-   double          centroids_array[2] = {1,4}; 
-
-   alg2(centroids_num,
-        max_iter,
-        epsilon,
-        vectors_array,
-        vectors_num,
-        vector_dim,  
-        centroids_array);
-
-   // printf("%f, %f\r\n", centroids_array[0], centroids_array[1]);  //Shai erase
-}
-*/
-/*
-static void
-print_all_vectors(
-   double *vectors_array, 
-   int vectors_num, 
-   int vector_dim)
-{
-   for(int i = 0; i < vectors_num; i++)  //Shai - no decleration inside for loop
-   {
-      printf("vector %d: ", i);
-      double *vector = get_element(vectors_array, i, vector_dim);  //Shai - no mixed declarations and code
-      for (int d = 0; d < vector_dim; d++)
-      {
-         printf("%f ", vector[d]);
-      }
-      printf("\r\n");
-   }
-}
-*/
 int kmeans(double         *vectors_array,
                    double         *centroids_array,
                    unsigned int  vectors_num,
