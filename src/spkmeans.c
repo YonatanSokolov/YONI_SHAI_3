@@ -3,6 +3,7 @@
 #include "calculate_w.h"
 #include "lnorm.h"
 #include "eigengap.h"
+#include "Jacobi_algo.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -14,7 +15,11 @@ int run(GOAL goal, const char *file_name) {
     MATRIX X = read_vectors_from_file(file_name);
     if (is_null(X)) return 1;
     if (goal == JACOBI) {
-        /* TODO run Jacobi algo */
+        MAT_AND_VEC U = Jacobi_algo(X);
+        free_matrix(X);
+        if (is_null(U.matrix)) return 1;
+        print_matrix_and_vector(U);
+        return 0;
     }
     else /* goal in {WAM, DDG, LNORM} */ {
         MATRIX W = NULL_MATRIX, L = NULL_MATRIX; 
@@ -28,7 +33,7 @@ int run(GOAL goal, const char *file_name) {
             return status;              \
             } while (0)
 
-        W = /* TODO func tha clacs W */ NULL_MATRIX;
+        W = create_W(X);
         if (is_null(W)) exit_func(1);
         if (goal == WAM) {
             print_matrix(W);
@@ -60,7 +65,7 @@ MATRIX spectralization(const char *file_name, unsigned k) {
     X = read_vectors_from_file(file_name);
     if (is_null(X)) return NULL_MATRIX;
     if (k >= X.num_rows) return NULL_MATRIX;
-    /* TODO calc W */
+    W = create_W(X);
     free_matrix(X);
     if (is_null(W)) return NULL_MATRIX;
     D = diagonal_degree_matrix(W);
