@@ -15,7 +15,6 @@ gcc -ansi -Wextra -Werror -pedantic-errors -lm -c src/calculate_w.c -o bin/calcu
 
 
 
-
 gcc bin/myIO.o bin/datastructures.o bin/lnorm.o bin/eigengap.o bin/shaijacobi.o bin/spkmeans.o bin/calculate_w.o \
 -o spkmeans -lm
 
