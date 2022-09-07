@@ -106,7 +106,7 @@ eigenvalues_and_eigenvectors actual_Jacobi_algo(MATRIX A,MATRIX P)
     // printf("succssfully created P\n");
     if (is_diagonal(ATAG) == true){printf("ATAG is diagonal! these are zeros: %f %f %f\n",m_at(ATAG,0,1),m_at(ATAG,0,2),m_at(ATAG,1,2));}
     if (is_diagonal(ATAG) == false){printf("ATAG is NOT diagonal! these are NOT zeros: %f %f %f\n",m_at(ATAG,0,1),m_at(ATAG,0,2),m_at(ATAG,1,2));}
-    if (!converged(A, ATAG) && !is_diagonal(ATAG))
+    if (!converged(A, ATAG) || !is_diagonal(ATAG))
     {
         printf("before free_mat\n");
         free_matrix(A);
