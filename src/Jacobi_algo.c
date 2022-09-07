@@ -13,7 +13,7 @@ JACOBI_ROTATION_MATRIX compute_P(MATRIX A);
 bool converged(MATRIX A, MATRIX B);
 bool is_diagonal(MATRIX A);
 MATRIX calculate_ATAG(MATRIX A);
-void multiply_M_and_P(MATRIX M,JACOBI_ROTATION_MATRIX P);
+MATRIX multiply_M_and_P(MATRIX M,JACOBI_ROTATION_MATRIX P);
 void print_JRM(JACOBI_ROTATION_MATRIX P);
 
 void main()
@@ -44,7 +44,7 @@ void main()
 
     eigenvalues_and_eigenvectors rslt = Jacobi_algo(A);
     printf("%f  %f  %f  %f\n",m_at(rslt.matrix,0,0),m_at(rslt.matrix,0,1),m_at(rslt.matrix,1,0),m_at(rslt.matrix,1,1));
-    printf("%f  %f  %f  %f\n",v_at(rslt.vector,0),v_at(rslt.vector,1),v_at(rslt.vector,2),v_at(rslt.vector,3));
+    printf("%f  %f  %f  %f\n",v_at(rslt.vector,0),v_at(rslt.vector,1));
 }
 
 void print_JRM(JACOBI_ROTATION_MATRIX P)
@@ -102,7 +102,7 @@ eigenvalues_and_eigenvectors actual_Jacobi_algo(MATRIX A,MATRIX P)
         }
         printf("success created eigenvalus\n");
         // printf("before created M*P\n");
-        multiply_M_and_P(P,new_P);
+        P = multiply_M_and_P(P,new_P);
         // printf("after created M*P\n");
         eigenvalues_and_eigenvectors rslt;
         // printf("before created rslt\n");
@@ -212,7 +212,7 @@ MATRIX calculate_ATAG(MATRIX A)
     return ATAG;
 }
 
-void multiply_M_and_P(MATRIX M,JACOBI_ROTATION_MATRIX P)
+MATRIX multiply_M_and_P(MATRIX M,JACOBI_ROTATION_MATRIX P)
 {
     //multiplys in-place in M
     unsigned int i,j;
@@ -230,7 +230,8 @@ void multiply_M_and_P(MATRIX M,JACOBI_ROTATION_MATRIX P)
         m_at(copy,i,P.i) = (P.c)*m_at(M,i,P.i) - (P.s)*m_at(M,i,P.j);
         m_at(copy,i,P.j) = (P.s)*m_at(M,i,P.i) + (P.c)*m_at(M,i,P.j);
     }
-    M = copy;
+    //M = copy;
+    return copy;
     //how to deal with memory here?
     //first free the original matrix data and then make m point to copy?
 }
