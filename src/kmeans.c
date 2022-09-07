@@ -357,7 +357,7 @@ int kmeans(double         *vectors_array,
         double *centroid = get_element(centroids_array, i, vector_dim);
         for(j = 0; j < vector_dim; j++)
             {
-                printf("%.4f%c", centroids_array[j], j + 1 == vector_dim ? '\n' : ',');
+                printf("%.4f%c", centroid[j], j + 1 == vector_dim ? '\n' : ',');
             } 
     } 
     return (int)kmeans;
