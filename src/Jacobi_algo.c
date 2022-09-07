@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #define sign(x)   ((x >= 0) - (x < 0))
 #define epsilon 0.00001
+#define NUM_ITER 100
 
 eigenvalues_and_eigenvectors Jacobi_algo(MATRIX A);
 eigenvalues_and_eigenvectors actual_Jacobi_algo(MATRIX A,MATRIX P);
@@ -98,6 +99,7 @@ eigenvalues_and_eigenvectors Jacobi_algo(MATRIX A)
 eigenvalues_and_eigenvectors actual_Jacobi_algo(MATRIX A,MATRIX P)
 {
     unsigned int i;
+    unsigned int num_iter = 0;
     // printf("before created A'\n");
     printf("before ATAG make sure that  %i   %i   are the size.\n" ,A.num_cols,A.num_rows);
     MATRIX ATAG = calculate_ATAG(A);
@@ -106,8 +108,9 @@ eigenvalues_and_eigenvectors actual_Jacobi_algo(MATRIX A,MATRIX P)
     // printf("succssfully created P\n");
     if (is_diagonal(ATAG) == true){printf("ATAG is diagonal! these are zeros: %f %f %f\n",m_at(ATAG,0,1),m_at(ATAG,0,2),m_at(ATAG,1,2));}
     if (is_diagonal(ATAG) == false){printf("ATAG is NOT diagonal! these are NOT zeros: %f %f %f\n",m_at(ATAG,0,1),m_at(ATAG,0,2),m_at(ATAG,1,2));}
-    if (!converged(A, ATAG) || !is_diagonal(ATAG))
+    if (!converged(A, ATAG) && !is_diagonal(ATAG) && num_iter < NUM_ITER)
     {
+        num_iter +=1;
         printf("before free_mat\n");
         free_matrix(A);
         printf("freeing success!, multipy tho?\n");
@@ -183,6 +186,7 @@ bool converged(MATRIX A, MATRIX B)
                 off_B += m_at(B,i,j)*m_at(B,i,j);
         }
     }
+    printf(" the distance between A and A' is %f\n",2*(off_A-off_B));
     if (2*(off_A-off_B) <= epsilon){return true;}
     return false;
 }
