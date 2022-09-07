@@ -81,5 +81,3 @@ GOAL goal_from_string(char *string) {
         return INVALID;
     }
 }
-
-// wam ddg lnorm jacobi
