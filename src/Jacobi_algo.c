@@ -44,6 +44,7 @@ void main()
 
     eigenvalues_and_eigenvectors rslt = Jacobi_algo(A);
     printf("%f  %f  %f  %f\n",m_at(rslt.matrix,0,0),m_at(rslt.matrix,0,1),m_at(rslt.matrix,1,0),m_at(rslt.matrix,1,1));
+    printf("%f  %f  %f  %f\n",v_at(rslt.vector,0),v_at(rslt.vector,1),v_at(rslt.vector,2),v_at(rslt.vector,3));
 }
 
 void print_JRM(JACOBI_ROTATION_MATRIX P)
@@ -60,8 +61,8 @@ eigenvalues_and_eigenvectors Jacobi_algo(MATRIX A)
     {
         for (i=0; i<A.num_rows; i++)
         {
-            if (i==j){m_at(id,i,j) = 0;}
-            else {m_at(id,i,j) =1;}
+            if (i==j){m_at(id,i,j) = 1;}
+            else {m_at(id,i,j) =0;}
         }
     }
     eigenvalues_and_eigenvectors rslt = actual_Jacobi_algo(A, id);
