@@ -414,7 +414,7 @@ int kmeans_wrapper(double         *vectors_array,
         for(j = 0; j < vector_dim; j++)
             {
                 printf("%.4f%c", centroids_array[j], j + 1 == vector_dim ? '\n' : ',');
-            }
+            } 
     } 
     
     return kmeans;
