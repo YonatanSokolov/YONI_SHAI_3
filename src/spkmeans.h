@@ -3,8 +3,6 @@
 
 #include "datastructures.h"
 
-typedef enum {WAM, DDG, LNORM, JACOBI} GOAL;
-
 /**
  * Runs algorithms for goals wam, ddg, lnorm, & jacobi.
  * Assumes correct file name format.
