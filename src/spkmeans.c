@@ -61,7 +61,7 @@ int run(GOAL goal, const char *file_name) {
 
 MATRIX spectralization(const char *file_name, unsigned k) {
     MATRIX X, W, L, T; DIAGONAL_MATRIX D; MAT_AND_VEC U; 
-
+    
     X = read_vectors_from_file(file_name);
     if (is_null(X)) return NULL_MATRIX;
     if (k >= X.num_rows) return NULL_MATRIX;
@@ -73,7 +73,7 @@ MATRIX spectralization(const char *file_name, unsigned k) {
     L = normalized_graph_laplacian(W, D);
     free_matrix(W); free_vector(D);
     if (is_null(L)) return NULL_MATRIX;
-    /* TODO jacobi */
+    U = eigenvalues_eigenvectors(L);
     free_matrix(L);
     if (k > 0) sort_inplace(&U);
     else k = k_and_sort_inplace(&U);

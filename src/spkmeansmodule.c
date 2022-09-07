@@ -6,9 +6,9 @@
 
 static MATRIX matrix_from_python_array(PyArrayObject *py_arr) {
     MATRIX M;
-    unsigned *dims = (unsigned *) PyArray_DIMS(py_arr);
-    M.num_rows = dims[0];
-    M.num_cols = dims[1];
+    npy_intp *dims = PyArray_DIMS(py_arr);
+    M.num_rows = (unsigned) dims[0];
+    M.num_cols = (unsigned) dims[1];
     M.data = (double *) PyArray_DATA(py_arr);
     return M;
 }
@@ -52,15 +52,18 @@ static PyObject* _run(PyObject* self, PyObject *args) {
 }
 
 static PyObject* _transform(PyObject* self, PyObject *args) {
-    unsigned k, dims[2]; 
+    unsigned k; 
+    npy_intp dims[2];
     char *input_file_name;
     MATRIX res;
     if (!PyArg_ParseTuple(args, "sI", &input_file_name, &k))
         return NULL;
     res = spectralization(input_file_name, k);
-    dims[0] = res.num_rows;
-    dims[1] = res.num_cols;
-    return Py_BuildValue("O", PyArray_SimpleNewFromData(2, (npy_intp *) dims, NPY_DOUBLE, res.data));
+    if (is_null(res)) return NULL;
+    dims[0] = (npy_intp) res.num_rows;
+    dims[1] = (npy_intp) res.num_cols;
+    if (is_null(res)) return NULL;
+    return Py_BuildValue("O", PyArray_SimpleNewFromData(2, dims, NPY_DOUBLE, res.data));
 }
 
 static PyObject* _kmeans(PyObject* self, PyObject *args) {

@@ -23,11 +23,8 @@ def get_input():
     assert len(args) == 3
     assert args[2].endswith(('.txt', '.csv'))
     k = int(args[0])
-    assert k > 0
+    assert k >= 0
     return k, goals[args[1]], args[2]
-
-def kmeans_pp(vectors: np.ndarray):
-    pass
 
 def kmeans_pp(vectors: np.ndarray):
     """
@@ -35,16 +32,15 @@ def kmeans_pp(vectors: np.ndarray):
     """
     num_vecs, dim = vectors.shape
     np.random.seed(0)
-    res = [ np.random.choice(num_vecs) ]
+    centroids = [ np.random.choice(num_vecs) ]
     norm_squared = lambda v: np.inner(v, v)
 
     for _ in range(1, dim):
-        P = np.fromiter((min(norm_squared(vectors[l] - vectors[j]) for j in res) \
+        P = np.fromiter((min(norm_squared(vectors[l] - vectors[j]) for j in centroids) \
             for l in range(num_vecs)), float) 
         P = P / np.sum(P)
-        res.append(np.random.choice(num_vecs, p=P))
-    
-    return res
+        centroids.append(np.random.choice(num_vecs, p=P))
+    return vectors[centroids]
 
 
 def main():
@@ -53,10 +49,11 @@ def main():
     except:
         sys.exit(INVALID_INPUT_MSG)
     try:
-        if goal == goals['jacobi']:
-            vectors = mykmeanssp.transform(k, input_file_name)
-            assert vectors != None
+        if goal == goals['spk']:
+            vectors = mykmeanssp.transform(input_file_name, k)
+            print(vectors)
             initial_centroids = kmeans_pp(vectors)
+            print(initial_centroids)
             assert mykmeanssp.kmeans(vectors, initial_centroids) == 0
         else:
             assert mykmeanssp.run(goal, input_file_name) == 0
