@@ -19,7 +19,7 @@ void print_JRM(JACOBI_ROTATION_MATRIX P);
 void main()
 {
     //test1 - compute P
-    MATRIX A = alloc_matrix(2,2),B = alloc_matrix(2,2),C = alloc_matrix(2,2),D = alloc_matrix(2,2),E = alloc_matrix(2,2),F = alloc_matrix(2,2);
+    MATRIX A = alloc_matrix(2,2),B = alloc_matrix(2,2),C = alloc_matrix(3,3),D = alloc_matrix(2,2),E = alloc_matrix(2,2),F = alloc_matrix(2,2);
     m_at(A,0,0) = 2;
     m_at(A,0,1) = 3;
     m_at(A,1,0) = 3;
@@ -31,8 +31,20 @@ void main()
     m_at(B,0,1) = 2;
     m_at(B,1,0) = 2;
     m_at(B,1,1) = 9;
+
     //B is |0 2|
     //     |2 9|
+
+    m_at(C,0,0) = 1;
+    m_at(C,0,1) = 2;
+    m_at(C,0,2) = 4;
+    m_at(C,1,0) = 2;
+    m_at(C,1,1) = 3;
+    m_at(C,1,2) = 5;
+    m_at(C,2,0) = 4;
+    m_at(C,2,1) = 5;
+    m_at(C,2,2) = 6;
+
     //JACOBI_ROTATION_MATRIX P1 = compute_P(A);
     //JACOBI_ROTATION_MATRIX P2 = compute_P(B);
     //print_JRM(P1);
@@ -45,7 +57,19 @@ void main()
     eigenvalues_and_eigenvectors rslt = Jacobi_algo(A);
     printf("%f  %f  %f  %f\n",m_at(rslt.matrix,0,0),m_at(rslt.matrix,0,1),m_at(rslt.matrix,1,0),m_at(rslt.matrix,1,1));
     printf("%f  %f \n",v_at(rslt.vector,0),v_at(rslt.vector,1));
-    
+
+    eigenvalues_and_eigenvectors rslt_c = Jacobi_algo(C);
+    printf("results for matrix C:\n");
+    printf("---------------------------------------------------------------------------------------\n");
+    printf("matrix:");
+    printf("[%f  %f  %f] \n",m_at(rslt_c.matrix,0,0),m_at(rslt_c.matrix,0,1),m_at(rslt_c.matrix,0,2));
+    printf("[%f  %f  %f] \n",m_at(rslt_c.matrix,1,0),m_at(rslt_c.matrix,1,1),m_at(rslt_c.matrix,1,2));
+    printf("[%f  %f  %f] \n",m_at(rslt_c.matrix,2,0),m_at(rslt_c.matrix,2,1),m_at(rslt_c.matrix,2,2));
+    printf("vector:");
+    printf("%f  %f %f\n",v_at(rslt_c.vector,0),v_at(rslt_c.vector,1),v_at(rslt_c.vector,1));
+
+
+
 }
 
 void print_JRM(JACOBI_ROTATION_MATRIX P)
