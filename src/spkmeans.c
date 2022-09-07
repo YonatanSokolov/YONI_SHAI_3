@@ -13,6 +13,7 @@
 
 int run(GOAL goal, const char *file_name) {
     MATRIX X = read_vectors_from_file(file_name);
+
     if (is_null(X)) return 1;
     if (goal == JACOBI) {
         MAT_AND_VEC U = eigenvalues_eigenvectors(X);
@@ -61,7 +62,8 @@ int run(GOAL goal, const char *file_name) {
 
 MATRIX spectralization(const char *file_name, unsigned k) {
     MATRIX X, W, L, T; DIAGONAL_MATRIX D; MAT_AND_VEC U; 
-    
+
+
     X = read_vectors_from_file(file_name);
     if (is_null(X)) return NULL_MATRIX;
     if (k >= X.num_rows) return NULL_MATRIX;

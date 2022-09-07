@@ -51,9 +51,7 @@ def main():
     try:
         if goal == goals['spk']:
             vectors = mykmeanssp.transform(input_file_name, k)
-            print(vectors)
             initial_centroids = kmeans_pp(vectors)
-            print(initial_centroids)
             assert mykmeanssp.kmeans(vectors, initial_centroids) == 0
         else:
             assert mykmeanssp.run(goal, input_file_name) == 0
