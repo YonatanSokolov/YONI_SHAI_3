@@ -54,18 +54,32 @@ void print_diagonal_matrix(DIAGONAL_MATRIX D) {
         printf("%.4f%c", i == j ? v_at(D, i) : 0, j + 1 == D.length ? '\n' : ',');
 }
 
-int has_input_file_name_format(char *string) {
-    char *suffix = "txt", *alt_suffix = "csv";
-
-    if (*string == '.') return 0;
-    while (*string && *string++ != '.');
-    if (*string == *alt_suffix) suffix = alt_suffix;
-    while (*string && *suffix && *string++ == *suffix++);
-    return *string == *suffix ? 1 : 0;
+static int string_compare(char *s1, char *s2) {
+    while (*s1 && *s2 && *s1++ == *s2++);
+    return *s1 == *s2 ? 1 : 0;
 }
 
-GOAL goal_from_string(const char *string) {
-    
+int has_input_file_name_format(char *string) {
+    if (*string == '.') return 0;
+    while (*string && *string++ != '.');
+    if (*string == 'c') 
+        return string_compare(string, "csv");
+    else return string_compare(string, "txt");
+}
+
+GOAL goal_from_string(char *string) {
+    switch (string[0]) {
+        case 'w':
+        return string_compare(string, "wam")    ? WAM    : INVALID;
+        case 'd':
+        return string_compare(string, "ddg")    ? DDG    : INVALID;
+        case 'l':
+        return string_compare(string, "lnorm")  ? LNORM  : INVALID;
+        case 'j':
+        return string_compare(string, "jacobi") ? JACOBI : INVALID;
+        default:
+        return INVALID;
+    }
 }
 
 // wam ddg lnorm jacobi
