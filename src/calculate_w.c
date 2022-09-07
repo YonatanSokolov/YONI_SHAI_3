@@ -9,7 +9,7 @@
 
 double distance_L2(double *v1, double *v2, unsigned int len){
     double result = 0;
-    int a;
+    unsigned int a;
     for (a = 0; a < len ; a++ ){
         result += (v1[a] - v2[a])*(v1[a] - v2[a]);
     }
@@ -19,7 +19,7 @@ double distance_L2(double *v1, double *v2, unsigned int len){
 
 MATRIX create_W(MATRIX V)
 {
-    int i ,j;
+    unsigned int i ,j;
     unsigned n = V.num_cols;
     MATRIX w = alloc_matrix(n, n);
     for(i=0; i<n; i++){
