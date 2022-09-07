@@ -79,8 +79,16 @@ MATRIX spectralization(const char *file_name, unsigned k) {
 }
 
 int main (int argc, char **argv) {
-    if (argc != 3) terminate(INVALID_INPUT_MSG);
-    if (!has_input_file_name_format(argv[2])) terminate(INVALID_INPUT_MSG);
-    /* TODO find goal */
+    GOAL goal;
+
+    if (argc != 3) 
+        terminate(INVALID_INPUT_MSG);
+    goal = goal_from_string(argv[1]);
+    if (goal == INVALID)
+        terminate(INVALID_INPUT_MSG);
+    if (!has_input_file_name_format(argv[2])) 
+        terminate(INVALID_INPUT_MSG);
+     if (run(goal, argv[2]))
+        terminate(ERROR_MSG);
     return 0;
 }
