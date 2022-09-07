@@ -1,8 +1,10 @@
+#define NPY_NO_DEPRECATED_API NPY_1_7_API_VERSION
+
 #include "spkmeans.h"
 #include <Python.h>
 #include <numpy/arrayobject.h>
 
-static MATRIX matrix_from_python_array(PyArrayObject py_arr) {
+static MATRIX matrix_from_python_array(PyArrayObject *py_arr) {
     MATRIX M;
     unsigned *dims = (unsigned *) PyArray_DIMS(py_arr);
     M.num_rows = dims[0];
@@ -11,7 +13,7 @@ static MATRIX matrix_from_python_array(PyArrayObject py_arr) {
     return M;
 }
 
-PyMODINIT_FUNC PyInit_module_name(void);
+PyMODINIT_FUNC PyInit_mykmeanssp(void);
 
 static PyObject* _run(PyObject* self, PyObject *args);
 static PyObject* _transform(PyObject* self, PyObject *args);
@@ -58,7 +60,7 @@ static PyObject* _transform(PyObject* self, PyObject *args) {
     res = spectralization(input_file_name, k);
     dims[0] = res.num_rows;
     dims[1] = res.num_cols;
-    return Py_BuildValue("O", PyArray_SimpleNewFromData(2, dims, NPY_DOUBLE, res.data));
+    return Py_BuildValue("O", PyArray_SimpleNewFromData(2, (npy_intp *) dims, NPY_DOUBLE, res.data));
 }
 
 static PyObject* _kmeans(PyObject* self, PyObject *args) {

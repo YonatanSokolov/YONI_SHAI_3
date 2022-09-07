@@ -71,7 +71,6 @@ int sort_inplace(MAT_AND_VEC *U) {
 unsigned k_and_sort_inplace(MAT_AND_VEC *U) {
     unsigned length = U->vector.length, k = 0, i;
     double max = -1;
-    MATRIX *res;
 
     if (sort_inplace(U)) return 0;
 

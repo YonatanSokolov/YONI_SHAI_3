@@ -3,7 +3,7 @@
 #include "calculate_w.h"
 #include "lnorm.h"
 #include "eigengap.h"
-#include "Jacobi_algo.h"
+#include "shaijacobi.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -15,7 +15,7 @@ int run(GOAL goal, const char *file_name) {
     MATRIX X = read_vectors_from_file(file_name);
     if (is_null(X)) return 1;
     if (goal == JACOBI) {
-        MAT_AND_VEC U = Jacobi_algo(X);
+        MAT_AND_VEC U = eigenvalues_eigenvectors(X);
         free_matrix(X);
         if (is_null(U.matrix)) return 1;
         print_matrix_and_vector(U);

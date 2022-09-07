@@ -2,9 +2,7 @@ import mykmeanssp
 
 import sys
 import numpy as np
-import pandas as pd
 
-np.impor
 
 INVALID_INPUT_MSG = 'Invalid Input!'
 ERROR_MSG = 'An Error Has Occurred'
@@ -23,7 +21,7 @@ def get_input():
     """returns k, goal, input_file_name"""
     args = sys.argv[1:]
     assert len(args) == 3
-    assert args[3].endswith(('.txt', '.csv'))
+    assert args[2].endswith(('.txt', '.csv'))
     k = int(args[0])
     assert k > 0
     return k, goals[args[1]], args[2]
