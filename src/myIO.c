@@ -63,3 +63,9 @@ int has_input_file_name_format(char *string) {
     while (*string && *suffix && *string++ == *suffix++);
     return *string == *suffix ? 1 : 0;
 }
+
+GOAL goal_from_string(const char *string) {
+    
+}
+
+// wam ddg lnorm jacobi

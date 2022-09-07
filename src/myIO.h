@@ -19,6 +19,6 @@ void print_diagonal_matrix(DIAGONAL_MATRIX D);
 
 int has_input_file_name_format(char *string);
 
-
+GOAL goal_from_string(const char *string);
 
 #endif /*__myIO__*/
