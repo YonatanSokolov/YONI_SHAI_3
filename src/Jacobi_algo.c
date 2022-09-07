@@ -78,7 +78,7 @@ eigenvalues_and_eigenvectors actual_Jacobi_algo(MATRIX A,MATRIX P)
     printf("succssfully created A'\n");
     JACOBI_ROTATION_MATRIX new_P = compute_P(A);
     // printf("succssfully created P\n");
-    if (!converged(A, ATAG) && !is_diagonal(A))
+    if (!converged(A, ATAG) && !is_diagonal(ATAG))
     {
         printf("before free_mat\n");
         free_matrix(A);
@@ -162,7 +162,7 @@ bool is_diagonal(MATRIX A)
     bool rslt = true;
     for (i=0; i < A.num_rows-1; i++){
         for (j=i+1; j < A.num_cols; j++){
-                if (fabs(m_at(A,i,j)) > 0.00001){rslt = false;}
+                if (m_at(A,i,j) != 0.0){rslt = false;}
         }
     }
     return rslt;
