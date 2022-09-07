@@ -281,8 +281,8 @@ static bool update_centroids(
 
    for(i = 0; i < vectors_num ; i++)  
    {
-      idx = info_4_argmin[i].centriod_idx;
       double *vector = get_element(vectors_array, i, vector_dim);
+      idx = info_4_argmin[i].centriod_idx;
 
       for(j=0; j< vector_dim;j++)  
       {
