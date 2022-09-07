@@ -129,7 +129,7 @@ ret_code_t alg2(int  centroids_num, //Shai - make integer
        iter_ctr++;
     }
 
-    printf("iter = %d\n", iter_ctr); //shai debug
+    //printf("iter = %d\n", iter_ctr); //shai debug
 
     free_all_resources(info_4_argmin,
                        info_4_convergence);
@@ -351,15 +351,6 @@ int kmeans(double         *vectors_array,
                    unsigned int  vector_dim)
 {
     unsigned  int i, j;
-    for (i = 0; i < vector_dim; i++)
-    {
-        double *centroid = get_element(centroids_array, i, vector_dim);
-        for(j = 0; j < vector_dim; j++)
-            {
-                printf("%.4f%c", centroid[j], j + 1 == vector_dim ? '\n' : ',');
-            } 
-    } 
-    printf("print data\n");
     ret_code_t kmeans = alg2(vector_dim, MAX_ITER, EPSILON, vectors_array, vectors_num, vector_dim, centroids_array);
     for (i = 0; i < vector_dim; i++)
     {
@@ -371,27 +362,3 @@ int kmeans(double         *vectors_array,
     } 
     return (int)kmeans;
 }
-/*
-int kmeans_wrapper_2(double         *vectors_array,
-                   double         *centroids_array,
-                   int  vectors_num,
-                   int  vector_dim)
-{
-    double         *vectors_array;
-    double         *centroids_array;
-    int  vectors_num;
-    int  vector_dim;
-    
-    unsigned i, j;
-    ret_code_t kmeans = alg2(vector_dim, MAX_ITER, EPSILON, vectors_array, vectors_num, vector_dim, centroids_array);
-    for (i = 0; i < vectors_num; i++)
-    {
-        double *centroid = get_element(centroids_array, i, vector_dim);
-        for(j = 0; j < vector_dim; j++)
-            {
-                printf("%.4f%c", centroids_array[j], j + 1 == vector_dim ? '\n' : ',');
-            } 
-    } 
-    return kmeans;
-}
-*/
