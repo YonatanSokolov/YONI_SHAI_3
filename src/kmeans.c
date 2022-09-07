@@ -11,7 +11,6 @@
 #include <stdbool.h>
 #include <string.h>
 #include <math.h>
-//#include <yoni.h>
 
 #define RET_CODE_FAILURE true
 #define RET_CODE_OK      false
@@ -74,20 +73,12 @@ static bool update_centroids(
    int                  vector_dim, 
    double               epsilon);
 
-// static void
-/*print_all_vectors(
-   double *vectors_array, 
-   int vectors_num, 
-   int vector_dim);
-*/
-
-//mykmeanssp.fit(k, max_iter, epsilon, vectors, numV, d, res) == 0
-ret_code_t alg2(int  centroids_num, //Shai - make integer
-                int  max_iter, //Shai - make integer
+ret_code_t alg2(int  centroids_num,
+                int  max_iter,
                 double          epsilon,
                 double         *vectors_array,
-                int  vectors_num, //Shai - make integer
-                int  vector_dim, //Shai - make integer
+                int  vectors_num,
+                int  vector_dim,
                 double         *centroids_array)
 {
     info_4_argmin_t      *info_4_argmin = alloc_and_init_info_4_argmin(vectors_num);
@@ -108,8 +99,6 @@ ret_code_t alg2(int  centroids_num, //Shai - make integer
        return RET_CODE_FAILURE;
     }
 
-   // print_all_vectors(vectors_array, vectors_num, vector_dim); //Shai - earse
-
     while ((iter_ctr < max_iter) && (false == convergence_reached))
     {
        for (centroid_idx = 0; centroid_idx < centroids_num; centroid_idx++)
@@ -124,12 +113,8 @@ ret_code_t alg2(int  centroids_num, //Shai - make integer
        }
 
        convergence_reached = update_centroids(info_4_convergence, info_4_argmin, centroids_array, centroids_num, vectors_array, vectors_num, vector_dim, epsilon);
-      //  print_all_vectors(centroids_array,centroids_num,vector_dim); //Shai erase
-      //  printf("  convergence_reached  = %d\r\n" ,convergence_reached ); //Shai erase
        iter_ctr++;
     }
-
-    //printf("iter = %d\n", iter_ctr); //shai debug
 
     free_all_resources(info_4_argmin,
                        info_4_convergence);
@@ -203,7 +188,7 @@ static info_4_convergence_t * alloc_and_init_info_4_convergence(int centroids_nu
             info[i].convergence_reached = false;
          */
          memset(info, 0, array_size);
-         for(i = 0; i < centroids_num; i++) //Shai - no decleration inside for loop
+         for(i = 0; i < centroids_num; i++)
          {
             memset(sum_per_centroid, 0, sum_per_centroid_size);
             info[i].sum = sum_per_centroid + (i * vector_dim);
@@ -239,12 +224,11 @@ static double calc_distance(double *vector,double *centroid,int vector_dim)
    int i;
    double dist = 0;
 
-   for(i = 0;i < vector_dim;i++)  //Shai - no decleration inside for loop
+   for(i = 0;i < vector_dim;i++)
    {
       dist += pow((vector[i]-centroid[i]),2);
-      // dist += (vector[i]-centroid[i])*(vector[i]-centroid[i]); //Shai mark
    }
-   dist = sqrt(dist); //Shai mark
+   dist = sqrt(dist);
 
    return dist;
 }
@@ -295,39 +279,36 @@ static bool update_centroids(
    int i,j,idx;
    bool no_another_loop = true;
 
-   for(i = 0; i < vectors_num ; i++)  //Shai - no decleration inside for loop
+   for(i = 0; i < vectors_num ; i++)  
    {
       idx = info_4_argmin[i].centriod_idx;
       double *vector = get_element(vectors_array, i, vector_dim);
 
-      for(j=0; j< vector_dim;j++)  //Shai - no decleration inside for loop
+      for(j=0; j< vector_dim;j++)  
       {
          info_4_convergence[idx].sum[j] += vector[j];
       }
       info_4_convergence[idx].cluster_size += 1;
    }
 
-   for (i = 0; i < centroids_num ; i++)  //Shai - no decleration inside for loop
+   for (i = 0; i < centroids_num ; i++)  
    {
-      for (j = 0; j < vector_dim ; j++)  //Shai - no decleration inside for loop
+      for (j = 0; j < vector_dim ; j++)  
       {
          info_4_convergence[i].sum[j] = info_4_convergence[i].sum[j]/info_4_convergence[i].cluster_size;
          /*print_all_vectors(centroids_array,centroids_num,vector_dim);*/
       }
    }
 
-   for (i = 0;i < centroids_num ; i++)  //Shai - no decleration inside for loop
+   for (i = 0;i < centroids_num ; i++)  
    {
       double *centroid = get_element(centroids_array,i,vector_dim);
       double distance = calc_distance(info_4_convergence[i].sum, centroid, vector_dim);
-      // printf("distance[%d] = %f\r\n" ,i,distance); //Shai erase
       if (distance > epsilon)
       {
-         // printf("distance was greater then epsilon\r\n"); //Shai erase
          no_another_loop = false;
          
       }
-      // print_all_vectors(centroids_array,centroids_num,vector_dim);  //Shai erase
       /*
       copy the new centroids into centroids array
       clear centroids info towards next loop 
