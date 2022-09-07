@@ -66,7 +66,7 @@ void main()
     printf("[%f  %f  %f] \n",m_at(rslt_c.matrix,1,0),m_at(rslt_c.matrix,1,1),m_at(rslt_c.matrix,1,2));
     printf("[%f  %f  %f] \n",m_at(rslt_c.matrix,2,0),m_at(rslt_c.matrix,2,1),m_at(rslt_c.matrix,2,2));
     printf("vector:");
-    printf("%f  %f %f\n",v_at(rslt_c.vector,0),v_at(rslt_c.vector,1),v_at(rslt_c.vector,1));
+    printf("%f  %f %f\n",v_at(rslt_c.vector,0),v_at(rslt_c.vector,1),v_at(rslt_c.vector,2));
 
 
 
