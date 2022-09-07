@@ -162,7 +162,7 @@ bool is_diagonal(MATRIX A)
     bool rslt = true;
     for (i=0; i < A.num_rows-1; i++){
         for (j=i+1; j < A.num_cols; j++){
-                if (m_at(A,i,j) != 0){rslt = false;}
+                if (fabs(m_at(A,i,j)) > 0.00001){rslt = false;}
         }
     }
     return rslt;
