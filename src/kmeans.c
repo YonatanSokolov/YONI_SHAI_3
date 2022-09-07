@@ -351,14 +351,21 @@ int kmeans(double         *vectors_array,
                    unsigned int  vector_dim)
 {
     unsigned  int i, j;
-    printf("print data");
+    for (i = 0; i < vectors_num; i++)
+    {
+        double *centroid = get_element(centroids_array, i, vector_dim);
+        for(j = 0; j < vector_dim; j++)
+            {
+                printf("%.4f%c", centroid[j], j + 1 == vector_dim ? '\n' : ',');
+            } 
+    } 
+    printf("print data\n");
     ret_code_t kmeans = alg2(vector_dim, MAX_ITER, EPSILON, vectors_array, vectors_num, vector_dim, centroids_array);
     for (i = 0; i < vectors_num; i++)
     {
         double *centroid = get_element(centroids_array, i, vector_dim);
         for(j = 0; j < vector_dim; j++)
             {
-                printf("___________________________YONI_______________________\n");
                 printf("%.4f%c", centroid[j], j + 1 == vector_dim ? '\n' : ',');
             } 
     } 
