@@ -4,6 +4,7 @@
 #include <Python.h>
 #include <numpy/arrayobject.h>
 
+/*
 static MATRIX matrix_from_python_array(PyArrayObject *py_arr) {
     MATRIX M;
     npy_intp *dims = PyArray_DIMS(py_arr);
@@ -12,6 +13,7 @@ static MATRIX matrix_from_python_array(PyArrayObject *py_arr) {
     M.data = (double *) PyArray_DATA(py_arr);
     return M;
 }
+*/
 
 PyMODINIT_FUNC PyInit_mykmeanssp(void);
 
@@ -72,12 +74,22 @@ static PyObject* _kmeans(PyObject* self, PyObject *args) {
     if (
         !PyArg_ParseTuple(args, "O!O!II", 
                                 &PyArray_Type, &vectors, 
-                                &PyArray_Type, &intial_centroids
+                                &PyArray_Type, &intial_centroids,
                                 &num_vecs, &dim)
     ) return NULL;
     return Py_BuildValue("i", kmeans(
-        matrix_from_python_array(vectors), 
-        matrix_from_python_array(intial_centroids),
+        (double *) PyArray_DATA(vectors), 
+        (double *) PyArray_DATA(intial_centroids),
         num_vecs, dim
         ));
 }
+ /*
+static PyObject* wrapper(PyObject* self, PyObject *args) {
+    int k, max_iter, numV, d;
+    double epsilon;
+    PyArrayObject *vectors, *res;
+    if(!PyArg_ParseTuple(args, "iidO!iiO!", &k, &max_iter, &epsilon, &PyArray_Type, &vectors, &numV, &d, &PyArray_Type, &res))
+        return NULL;
+    return Py_BuildValue("i", alg2(k, max_iter, epsilon, (double*)PyArray_DATA(vectors), numV, d, (double*)PyArray_DATA(res)));
+}
+*/
