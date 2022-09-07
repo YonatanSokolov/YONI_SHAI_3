@@ -1,7 +1,7 @@
 #ifndef __datastructures__
 #define __datastructures__
 
-typedef enum {WAM, DDG, LNORM, JACOBI} GOAL;
+typedef enum {WAM, DDG, LNORM, JACOBI, INVALID} GOAL;
 
 #define is_null(DS) !DS.data
 

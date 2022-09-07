@@ -5,7 +5,7 @@
 
 /**
  * Runs algorithms for goals wam, ddg, lnorm, & jacobi.
- * Assumes correct file name format.
+ * Assumes correct file name format, and that goal is valid.
  * Return 0 on success.
  */
 int run(GOAL goal, const char *file_name);
