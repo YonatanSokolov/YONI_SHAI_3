@@ -37,6 +37,7 @@ int run(GOAL goal, const char *file_name) {
             return 0;
         }
     }
+    return 2;
 }
 
 MATRIX spectralization(const char *file_name, unsigned k) {
