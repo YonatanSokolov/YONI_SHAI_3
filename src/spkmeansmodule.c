@@ -81,12 +81,3 @@ static PyObject* _kmeans(PyObject* self, PyObject *args) {
         num_vecs, dim
         ));
 }
-
-static PyObject* wrapper(PyObject* self, PyObject *args) {
-    int k, max_iter, numV, d;
-    double epsilon;
-    PyArrayObject *vectors, *res;
-    if(!PyArg_ParseTuple(args, "iidO!iiO!", &k, &max_iter, &epsilon, &PyArray_Type, &vectors, &numV, &d, &PyArray_Type, &res))
-        return NULL;
-    return Py_BuildValue("i", alg2(k, max_iter, epsilon, (double*)PyArray_DATA(vectors), numV, d, (double*)PyArray_DATA(res)));
-}
