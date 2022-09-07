@@ -44,7 +44,7 @@ void main()
 
     eigenvalues_and_eigenvectors rslt = Jacobi_algo(A);
     printf("%f  %f  %f  %f\n",m_at(rslt.matrix,0,0),m_at(rslt.matrix,0,1),m_at(rslt.matrix,1,0),m_at(rslt.matrix,1,1));
-    printf("%f  %f  %f  %f\n",v_at(rslt.vector,0),v_at(rslt.vector,1));
+    printf("%f  %f \n",v_at(rslt.vector,0),v_at(rslt.vector,1));
 }
 
 void print_JRM(JACOBI_ROTATION_MATRIX P)
