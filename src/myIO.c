@@ -53,3 +53,13 @@ void print_diagonal_matrix(DIAGONAL_MATRIX D) {
     for (i = 0; i < D.length; i++) for(j = 0; j < D.length; j++)
         printf("%.4f%c", i == j ? v_at(D, i) : 0, j + 1 == D.length ? '\n' : ',');
 }
+
+int has_input_file_name_format(char *string) {
+    char *suffix = "txt", *alt_suffix = "csv";
+
+    if (*string == '.') return 0;
+    while (*string && *string++ != '.');
+    if (*string == *alt_suffix) suffix = alt_suffix;
+    while (*string && *suffix && *string++ == *suffix++);
+    return *string == *suffix ? 1 : 0;
+}

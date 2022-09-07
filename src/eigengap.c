@@ -44,11 +44,7 @@ static void sort_inplace_rec(KEY *arr, unsigned length) {
     #undef swap
 }
 
-/**
- * Sorts matrix and vector by vector's elements inplace.
- * Messes up memory layout!!!
- */
-static int sort_inplace(MAT_AND_VEC *U) {
+int sort_inplace(MAT_AND_VEC *U) {
     unsigned num_vecs = U->matrix.num_cols, num_coos = U->matrix.num_rows;
     unsigned i, j;
     KEY *vps = (KEY *) malloc(num_vecs * sizeof(KEY));

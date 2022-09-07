@@ -4,6 +4,12 @@
 #include "datastructures.h"
 
 /**
+ * Sorts matrix and vector by vector's elements inplace.
+ * Returns 0 on success.
+ */
+int sort_inplace(MAT_AND_VEC *U);
+
+/**
  * Determine k via eigengap heuristic, and reduce input to k columns. 
  * Assumes input vector has an eigenvalue for each column of input matrix.
  */
