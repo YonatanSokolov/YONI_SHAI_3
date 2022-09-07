@@ -3,6 +3,12 @@
 #include "calculate_w.h"
 #include "lnorm.h"
 #include "eigengap.h"
+#include <stdio.h>
+#include <stdlib.h>
+
+#define ERROR_MSG "An Error Has Occurred"
+#define INVALID_INPUT_MSG "Invalid Input!"
+#define terminate(msg)      do { printf("%s\n", msg); exit(1); } while(0)
 
 int run(GOAL goal, const char *file_name) {
     MATRIX X = read_vectors_from_file(file_name);
@@ -53,5 +59,8 @@ MATRIX spectralization(const char *file_name, unsigned k) {
 }
 
 int main (int argc, char **argv) {
+    if (argc != 3) terminate(INVALID_INPUT_MSG);
+    if (!has_input_file_name_format(argv[2])) terminate(INVALID_INPUT_MSG);
+    /* TODO find goal */
     return 0;
 }
