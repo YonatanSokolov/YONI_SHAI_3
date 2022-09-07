@@ -20,16 +20,16 @@ double distance_L2(double *v1, double *v2, unsigned int len){
 MATRIX create_W(MATRIX V)
 {
     unsigned int i ,j;
-    unsigned n = V.num_cols;
+    unsigned n = V.num_rows;
     MATRIX w = alloc_matrix(n, n);
-    for(i=0; i<n; i++){
+    for(i=0; i < n; i++){
         for(j=0;j<n;j++){
             if (i==j){
                 m_at(w,i,j) = 0;
             }
             else{
                     /* printf("exp res %lf\n", exp(-distance_L2(V->data[i],V->data[j],V->num_rows)/2));*/
-                    m_at(w,i,j) = exp(-distance_L2(&m_at(V,i,0),&m_at(V,j,0),V.num_rows)/2);
+                    m_at(w,i,j) = exp(-distance_L2(&m_at(V,i,0),&m_at(V,j,0),V.num_cols)/2);
             }
         }
     }
