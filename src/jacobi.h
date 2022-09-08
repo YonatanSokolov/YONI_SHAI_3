@@ -1,5 +1,5 @@
-#ifndef __shaijacobi__
-#define __shaijacobi__
+#ifndef __jacobi__
+#define __jacobi__
 
 #include "datastructures.h"
 
@@ -11,4 +11,4 @@
 MAT_AND_VEC eigenvalues_eigenvectors(MATRIX S);
 
 
-#endif /*__shaijacobi__*/
+#endif /*__jacobi__*/

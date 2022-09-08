@@ -1,5 +1,5 @@
 #include "../src/myIO.h"
-#include "../src/shaijacobi.h"
+#include "../src/jacobi.h"
 #include <assert.h>
 #include <math.h>
 #include <stdio.h>

@@ -10,7 +10,7 @@ setup(
             'calculate_w.c', 
             'datastructures.c', 
             'eigengap.c', 
-            'shaijacobi.c', 
+            'jacobi.c', 
             'kmeans.c', 
             'lnorm.c', 
             'myIO.c',

@@ -3,7 +3,7 @@
 #include "calculate_w.h"
 #include "lnorm.h"
 #include "eigengap.h"
-#include "shaijacobi.h"
+#include "jacobi.h"
 #include <stdio.h>
 #include <stdlib.h>
 

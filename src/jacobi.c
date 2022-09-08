@@ -1,4 +1,4 @@
-#include "shaijacobi.h"
+#include "jacobi.h"
 #include <math.h>
 
 #define MAX_ITER    100
