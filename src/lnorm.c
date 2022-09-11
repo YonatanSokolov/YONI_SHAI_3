@@ -30,5 +30,6 @@ MATRIX normalized_graph_laplacian(MATRIX W, DIAGONAL_MATRIX D) {
             m_at(L, i, j) = 
                 (i == j) - m_at(W, i, j) / v_at(D_sqrt, i) / v_at(D_sqrt, j);  
     
+    free_vector(D_sqrt);
     return L;
 }
