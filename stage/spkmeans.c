@@ -20,7 +20,8 @@ int run(GOAL goal, const char *file_name) {
         free_matrix(X);
         if (is_null(U.matrix)) return 1;
         print_matrix_and_vector(U);
-        free_matrix(U.matrix); free_vector(U.vector);
+        free_matrix(U.matrix); 
+        free_vector(U.vector);
         return 0;
     }
     else /* goal in {WAM, DDG, LNORM} */ {
