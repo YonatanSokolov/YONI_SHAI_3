@@ -4,17 +4,6 @@
 #include <Python.h>
 #include <numpy/arrayobject.h>
 
-/*
-static MATRIX matrix_from_python_array(PyArrayObject *py_arr) {
-    MATRIX M;
-    npy_intp *dims = PyArray_DIMS(py_arr);
-    M.num_rows = (unsigned) dims[0];
-    M.num_cols = (unsigned) dims[1];
-    M.data = (double *) PyArray_DATA(py_arr);
-    return M;
-}
-*/
-
 PyMODINIT_FUNC PyInit_mykmeanssp(void);
 
 static PyObject* _run(PyObject* self, PyObject *args);
@@ -83,13 +72,3 @@ static PyObject* _kmeans(PyObject* self, PyObject *args) {
         num_vecs, dim
         ));
 }
- /*
-static PyObject* wrapper(PyObject* self, PyObject *args) {
-    int k, max_iter, numV, d;
-    double epsilon;
-    PyArrayObject *vectors, *res;
-    if(!PyArg_ParseTuple(args, "iidO!iiO!", &k, &max_iter, &epsilon, &PyArray_Type, &vectors, &numV, &d, &PyArray_Type, &res))
-        return NULL;
-    return Py_BuildValue("i", alg2(k, max_iter, epsilon, (double*)PyArray_DATA(vectors), numV, d, (double*)PyArray_DATA(res)));
-}
-*/

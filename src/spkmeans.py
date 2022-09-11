@@ -7,7 +7,6 @@ import numpy as np
 INVALID_INPUT_MSG = 'Invalid Input!'
 ERROR_MSG = 'An Error Has Occurred'
 
-# typedef enum {WAM, DDG, LNORM, JACOBI, INVALID} GOAL;
 goals = {
     'spk' : -1,
     'wam' : 0,
