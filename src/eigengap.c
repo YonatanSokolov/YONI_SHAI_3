@@ -48,7 +48,9 @@ int sort_inplace(MAT_AND_VEC *U) {
     unsigned num_vecs = U->matrix.num_cols, num_coos = U->matrix.num_rows;
     unsigned i, j;
     KEY *vps = (KEY *) malloc(num_vecs * sizeof(KEY));
-    double *new_data = (double *) malloc(U->matrix.num_rows * U->matrix.num_cols * sizeof(double));
+    double *new_data = (double *) malloc(
+        U->matrix.num_rows * U->matrix.num_cols * sizeof(double)
+    );
     if (!vps || !new_data) return 1;
 
     for (j = 0; j < num_vecs; j++) {

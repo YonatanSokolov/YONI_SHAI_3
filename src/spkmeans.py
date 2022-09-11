@@ -36,8 +36,15 @@ def kmeans_pp(vectors: np.ndarray):
     norm_squared = lambda v: np.inner(v, v)
 
     for _ in range(1, dim):
-        P = np.fromiter((min(norm_squared(vectors[l] - vectors[j]) for j in centroids) \
-            for l in range(num_vecs)), float) 
+        P = np.fromiter(
+            (
+                min(
+                    norm_squared(vectors[l] - vectors[j]) for j in centroids
+                ) 
+                for l in range(num_vecs)
+            ), 
+            float
+        ) 
         P = P / np.sum(P)
         centroids.append(np.random.choice(num_vecs, p=P))
     return vectors[centroids]
@@ -52,7 +59,9 @@ def main():
         if goal == goals['spk']:
             vectors = mykmeanssp.transform(input_file_name, k)
             initial_centroids = kmeans_pp(vectors)
-            assert mykmeanssp.kmeans(vectors, initial_centroids, *vectors.shape) == 0
+            assert mykmeanssp.kmeans(
+                vectors, initial_centroids, *vectors.shape
+                ) == 0
         else:
             assert mykmeanssp.run(goal, input_file_name) == 0
     except:

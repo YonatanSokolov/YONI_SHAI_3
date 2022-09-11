@@ -78,7 +78,8 @@ EIGENVS eigenvalues_eigenvectors(MATRIX S) {
         prev_largest_off = curr_largest_off;
         /* calculate and update c and s */
         {
-            double theta = (m_at(S, P.j, P.j) - m_at(S, P.i, P.i)) / (2 * m_at(S, P.i, P.j));
+            double theta = 
+             (m_at(S, P.j, P.j)-m_at(S, P.i, P.i)) / (2*m_at(S, P.i, P.j));
             short sign = (theta >= 0) - (theta < 0);
             double t = sign / (sign*theta + sqrt(square(theta) + 1));
             P.c = 1 / sqrt(square(t) + 1);
@@ -86,8 +87,11 @@ EIGENVS eigenvalues_eigenvectors(MATRIX S) {
         }
         pivot_inplace(S, P);
         left_rotate_inplace(res.matrix, P);
-        find_largest_offdiagonal_and_sum_upper(S, &P.i, &P.j, &curr_largest_off);
-    } while (++iter < MAX_ITER && prev_largest_off - curr_largest_off > EPSILON);
+        find_largest_offdiagonal_and_sum_upper(
+            S, &P.i, &P.j, &curr_largest_off
+        );
+    } while (++iter < MAX_ITER && 
+             prev_largest_off - curr_largest_off > EPSILON);
 
     /* extract eigenvalues */
     {
