@@ -24,8 +24,8 @@ static void sort_inplace_rec(KEY *arr, unsigned length) {
         } while (0)   
 
     unsigned start = 0, end = --length;
-    if (end - start == 1 && before(end, start)) {
-        swap(end, start);
+    if (end - start == 1) {
+        if (before(end, start)) swap(end, start);
         return;
     }
     else while (start < end) {
