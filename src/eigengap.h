@@ -22,7 +22,8 @@ MATRIX reduced_vectors(MATRIX U, unsigned k);
 
 /**
  * Renormalizes given matrix's rows
+ * Returns 0 on success.
  */
-void renormalize_inplace(MATRIX U);
+int renormalize_inplace(MATRIX U);
 
 #endif /*__eigengap__*/

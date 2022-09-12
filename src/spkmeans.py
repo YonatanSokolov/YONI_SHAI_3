@@ -46,6 +46,7 @@ def kmeans_pp(vectors: np.ndarray):
         ) 
         P = P / np.sum(P)
         centroids.append(np.random.choice(num_vecs, p=P))
+    print(','.join(str(i) for i in centroids))
     return vectors[centroids]
 
 

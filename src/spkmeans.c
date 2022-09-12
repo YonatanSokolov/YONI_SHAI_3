@@ -84,12 +84,13 @@ MATRIX spectralization(const char *file_name, unsigned k) {
     if (k > 0) sort_inplace(&U);
     else k = k_and_sort_inplace(&U);
     T = reduced_vectors(U.matrix, k);
+    if (renormalize_inplace(T)) return NULL_MATRIX;
     free_matrix(U.matrix); free_vector(U.vector);
     if (is_null(T)) return NULL_MATRIX;
     return T;
 }
 
-int main (int argc, char **argv) {
+int main(int argc, char **argv) {
     GOAL goal;
 
     if (argc != 3) 

@@ -97,14 +97,16 @@ MATRIX reduced_vectors(MATRIX U, unsigned k) {
     return res;
 }
 
-void renormalize_inplace(MATRIX U) {
+int renormalize_inplace(MATRIX U) {
     unsigned i, j;
     for (i = 0; i < U.num_rows; i++) {
         double norma = 0;
         for (j = 0; j < U.num_cols; j++)
             norma += m_at(U, i, j) * m_at(U, i, j);
+        if (norma == 0) return 1;
         norma = sqrt(norma);
         for (j = 0; j < U.num_cols; j++)
             m_at(U, i, j) /= norma;
     }
+    return 0;
 }
